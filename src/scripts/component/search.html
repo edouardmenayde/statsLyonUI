@@ -1,0 +1,25 @@
+<template>
+  <div class="container" keydown.delegate="handleKeyDown($event)">
+    <div id="custom-search-input">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control input-lg"
+          placeholder="Search"
+          value.bind="input & debounce"
+          click.delegate="handleClickForInputField($event)"
+          focus.bind="hasFocus"
+        />
+        <span class="input-group-btn">
+          <button class="btn" type="button">
+              <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+      <results
+        view-model.ref="resultsElement"
+        dataset.bind="results"
+      ></results>
+    </div>
+  </div>
+</template>

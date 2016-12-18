@@ -1,0 +1,28 @@
+<template>
+  <div
+    class="autocompletion-container"
+    if.bind="display"
+  >
+    <ul id="autocompletion">
+      <li
+        class="station"
+        repeat.for="item of dataset"
+        class.bind="($index === selectedItemIndex) ? 'active': ''"
+      >
+        <a
+          href="/#/station/${item._source.stationID}"
+          focus.bind="($index === selectedItemIndex)"
+        >
+          <p>
+            ${$index}
+            <br>
+            ${selectedItemIndex}
+          </p>
+
+          <span class="tag tag-info">${item._source.stationID}</span>
+          <h5>${item._source.name | titleFormat}</h5>
+        </a>
+      </li>
+    </ul>
+  </div>
+</template>

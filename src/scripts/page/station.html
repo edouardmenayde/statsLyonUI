@@ -1,0 +1,57 @@
+<template>
+  <h1 class="row m-x-auto flex-items-xs-center" style="margin-top:30px;margin-bottom:30px;color:#286090;">
+    <span class="tag tag-success" style="margin-right:10px;">${id}</span>${data._source.name}
+  </h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-xs-12">
+        <chart view-model.ref="chart" settings.bind="settings"></chart>
+        <form class="form-inline text-center">
+          <div class="form-group">
+            <label>From</label>
+            <input type="date" class="form-control" value.bind="from | dateFormat">
+          </div>
+          <div class="form-group">
+            <label>to</label>
+            <input type="date" class="form-control" value.bind="to | dateFormat">
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4 col-xs-12 flex-xs-middle flex-md-middle">
+        <div class="panel panel-default">
+          <table class="table table-bordered table-striped">
+            <tr>
+              <td>Town</td>
+              <td class="text-center">${data._source.town}</td>
+            </tr>
+            <tr>
+              <td>Bonus</td>
+              <td class="text-center">${data._source.bonus}</td>
+            </tr>
+            <tr>
+              <td>Stands</td>
+              <td class="text-center">${data._source.stands}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="panel panel-default">
+          <table class="table table-bordered table-striped">
+            <tr>
+              <td>Minimum</td>
+              <td class="text-center">${stats.min}</td>
+            </tr>
+            <tr>
+              <td>Max</td>
+              <td class="text-center">${stats.max}</td>
+            </tr>
+            <tr>
+              <td>Average</td>
+              <td class="text-center">${stats.avg | floatFormat}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

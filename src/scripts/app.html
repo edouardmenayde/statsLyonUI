@@ -1,0 +1,12 @@
+<template>
+  <require from="component/core/nav-bar.html"></require>
+  <require from="humane-js/themes/flatty.css"></require>
+
+  <nav-bar router.bind="router"></nav-bar>
+
+  <search></search>
+
+  <div class="container">
+    <router-view></router-view>
+  </div>
+</template>

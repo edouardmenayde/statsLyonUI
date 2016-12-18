@@ -1,0 +1,13 @@
+<template>
+  <div
+    id="tooltip-container"
+    element.ref="tooltipContainer"
+    show.bind="_show"
+    css="top: ${top}px; left: ${left}px;"
+  >
+    <div>
+      <span class="tooltip-key" if.bind="key">${key}</span>
+      <span class="tooltip-value" if.bind="value">${value}</span>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,12 @@
+{
+  "Initializing application"                : "Initialisation de l'application",
+  "Username"                                : "Utilisateur",
+  "Password"                                : "Mot de passe",
+  "Navigation"                              : "Navigation",
+  "Home"                                    : "Maison",
+  "Signed in as"                            : "Authentifie en tant que",
+  "Login"                                   : "Se connecter",
+  "Something went wrong!"                   : "Quelque chose c'est mal passe",
+  "Login failed!"                           : "La connexion a echoue !",
+  "logout"                                  : "deconnexion"
+}
