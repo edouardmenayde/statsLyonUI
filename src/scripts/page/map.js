@@ -5,14 +5,14 @@ import {Endpoint} from 'aurelia-api';
 export class Map {
   colorRange = ['brown', 'steelblue'];
 
-  dataSet = null;
+  dataset = null;
 
   stats = null;
 
   towns = null;
 
-  setDataSet() {
-    this.dataSet = {
+  setDataset() {
+    this.dataset = {
       title  : 'Number of stands',
       data   : this.stats,
       toFetch: 'sum.value'
@@ -42,7 +42,7 @@ export class Map {
       })
       .then(response => {
         this.stats = response;
-        this.setDataSet();
+        this.setDataset();
       })
       .catch(error => {
         console.error(error);

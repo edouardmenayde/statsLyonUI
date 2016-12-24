@@ -48,7 +48,6 @@ export class Search {
   }
 
   unfocus() {
-    console.info('Unfocused');
     this.hasFocus = false;
   }
 
