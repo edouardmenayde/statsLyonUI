@@ -1,8 +1,9 @@
 <template>
-  <h1 class="row m-x-auto flex-items-xs-center" style="margin-top:30px;margin-bottom:30px;color:#286090;">
-    <span class="tag tag-success" style="margin-right:10px;">${id}</span>${data._source.name}
-  </h1>
   <div class="container">
+    <search></search>
+    <h1 class="row m-x-auto flex-items-xs-center" style="margin-top:30px;margin-bottom:30px;color:#286090;">
+      <span class="tag tag-success" style="margin-right:10px;">${id}</span>${data._source.name}
+    </h1>
     <div class="row">
       <div class="col-md-8 col-xs-12">
         <chart view-model.ref="chart" settings.bind="settings"></chart>

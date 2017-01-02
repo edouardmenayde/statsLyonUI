@@ -3,22 +3,36 @@
 <head>
   <title>Aurelia</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="/jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/styles/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
 </head>
 
 <body aurelia-app="main">
-<div class="splash">
-  <div class="message" t="Initializing application"></div>
-  <i class="fa fa-spinner fa-spin"></i>
-</div>
 
-<script src="jspm_packages/system.js"></script>
-<script src="config.js"></script>
+  <div class="splash">
+    <h1 class="message">Initializing application...</h1>
+    <i class="fa fa-circle-o-notch fa-spin icon"></i>
+  </div>
 
-<script>
-  System.import('aurelia-bootstrapper');
-</script>
+  <script src="/jspm_packages/system.js"></script>
+  <script src="/config.js"></script>
+  <script>
+    var phrases = ['Coupe les carrotes', 'Mixe la soupe', 'Achète le beurre', 'Achète un loulou'];
+
+    document.querySelector('.message').textContent = phrases[Math.floor(Math.random() * phrases.length)] + '...';
+
+    System.import('raf')
+      .then(function () {
+        return System.import('aurelia-polyfills');
+      })
+      .then(function () {
+        return System.import('webcomponents/webcomponentsjs/MutationObserver');
+      })
+      .then(function () {
+        System.import('aurelia-bootstrapper');
+      });
+  </script>
 </body>
 </html>

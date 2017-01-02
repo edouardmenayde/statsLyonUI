@@ -1,9 +1,34 @@
 <template>
+  <div class="container map">
 
-  <tooltip view-model.ref="tooltip"></tooltip>
+    <div class="controls">
+      <button class="fullscreen button float-xs-right" type="submit" click.delegate="fullscreen()">
+        <i class="fa fa-white fa-inverse fa-arrows-alt"></i>
+      </button>
+      <button class="minus button float-xs-right" type="submit" click.delegate="zoomIn()">
+        <i class="fa fa-white fa-inverse fa-minus"></i>
+      </button>
+      <button class="plus button float-xs-right" type="submit" click.delegate="zoomOut()">
+        <i class="fa fa-white fa-inverse fa-plus"></i>
+      </button>
+      <div class="station-selector float-xs-left">
+        <input
+          class="time-selector"
+          type="range"
+          value.bind="stationSelected"
+          min="0"
+          max.bind="stationsStats.length - 1"
+          step="1"
+        />
+        <span class="time-selector-value">${stationsStats[stationSelected].key_as_string | hourFormat}</span>
+      </div>
+    </div>
 
-  <div class="container" ref="svgContainer" style="padding:0;">
-    <svg element.ref="svgElement"></svg>
+    <tooltip view-model.ref="tooltip"></tooltip>
+
+    <div class="svg-container" ref="svgContainer">
+      <svg element.ref="svgElement"></svg>
+    </div>
+
   </div>
-
 </template>

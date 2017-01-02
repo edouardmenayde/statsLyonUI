@@ -6,22 +6,19 @@ module.exports = {
         "**/*.html!text",
         "**/*.css!text"
       ],
-      "options": {
-        "inject":   true,
-        "minify":   true,
+      "options" : {
+        "inject"  : true,
+        "minify"  : true,
         "depCache": true,
-        "rev":      false
+        "rev"     : false
       }
     },
-   "scripts/vendor": {
+    "scripts/vendor"   : {
       "includes": [
         "npm:get-prop",
         "systemjs/plugin-text",
-        "aurelia-orm/**/*.html!text",
-        "humane-js/themes/jackedup.css!text",
+        "humane-js/themes/flatty.css!text",
         "aurelia-api",
-        "aurelia-authentication",
-        "[aurelia-authentication/**/*.js]",
         "aurelia-dependency-injection",
         "aurelia-fetch-client",
         "aurelia-framework",
@@ -34,8 +31,6 @@ module.exports = {
         "aurelia-loader-default",
         "aurelia-logging-console",
         "aurelia-notification",
-        "aurelia-orm",
-        "[aurelia-orm/**/*.js]",
         "aurelia-pal",
         "aurelia-pal-browser",
         "aurelia-polyfills",
@@ -45,16 +40,24 @@ module.exports = {
         "aurelia-templating-router",
         "aurelia-validation",
         "bootstrap",
-        "bootstrap/css/bootstrap.css!text",
+        "remove-accents",
+        "moment",
+        "d3",
+        "c3",
+        "homefront",
+        "raf",
+        "intl",
+        "webcomponents/webcomponentsjs/MutationObserver",
         "fetch",
         "i18next-xhr-backend",
-        "jquery"
+        "jquery",
+        "screenfull"
       ],
-      "options":  {
-        "inject":   true,
-        "minify":   true,
+      "options" : {
+        "inject"  : true,
+        "minify"  : true,
         "depCache": false,
-        "rev":      false
+        "rev"     : false
       }
     }
   }

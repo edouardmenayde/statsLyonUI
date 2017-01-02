@@ -1,8 +1,8 @@
 import moment from 'moment';
 
-export class dateFormatValueConverter {
+export class hourFormatValueConverter {
   toView(value) {
-    const format = 'YYYY-MM-DD';
+    const format = 'HH:mm';
     if (moment.isMoment(value)) {
       return value.format(format);
     }

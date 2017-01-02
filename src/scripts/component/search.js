@@ -48,7 +48,6 @@ export class Search {
   }
 
   unfocus() {
-    console.info('Unfocused');
     this.hasFocus = false;
   }
 
@@ -69,17 +68,31 @@ export class Search {
     this.listenToDoubleClickEvent();
   }
 
+  detached() {
+    this.removeClickEventListener();
+    this.removeDoubleClickEventListener();
+  }
+
   listenToDoubleClickEvent() {
-    this.bodyElement.addEventListener('dblclick', () => {
+    this.doubleClickEventListener = this.bodyElement.addEventListener('dblclick', () => {
       return this.handlePageClickEvent();
     });
   }
 
+  removeDoubleClickEventListener() {
+    this.bodyElement.removeEventListener('dblclick', this.doubleClickEventListener);
+  }
+
   listenToClickEvent() {
-    this.bodyElement.addEventListener('click', () => {
+    this.clickEventListener = this.bodyElement.addEventListener('click', () => {
       return this.handlePageClickEvent();
     });
   }
+
+  removeClickEventListener() {
+    this.bodyElement.removeEventListener('click', this.clickEventListener);
+  }
+
 
   getLinkForSelectedItem() {
     const index = this.resultsElement.getSelectedItemIndex() >= 0 ? this.resultsElement.getSelectedItemIndex() : 0;

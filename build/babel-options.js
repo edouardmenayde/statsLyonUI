@@ -1,19 +1,19 @@
-const path = require('path');
+const path  = require('path');
 const paths = require('./paths');
 
-exports.base = function() {
+exports.base = function () {
   return {
-    filename: '',
+    filename        : '',
     filenameRelative: '',
-    sourceMap: true,
-    sourceRoot: '',
-    moduleRoot: path.resolve('src').replace(/\\/g, '/'),
-    moduleIds: false,
-    comments: false,
-    compact: false,
-    code: true,
-    presets: [ 'es2015-loose', 'stage-1'],
-    plugins: [
+    sourceMap       : true,
+    sourceRoot      : '',
+    moduleRoot      : path.resolve('src').replace(/\\/g, '/'),
+    moduleIds       : false,
+    comments        : false,
+    compact         : false,
+    code            : true,
+    presets         : ['es2015-loose', 'stage-1'],
+    plugins         : [
       'syntax-flow',
       'transform-decorators-legacy',
       'transform-flow-strip-types'
@@ -21,26 +21,26 @@ exports.base = function() {
   };
 };
 
-exports.commonjs = function() {
+exports.commonjs = function () {
   var options = exports.base();
   options.plugins.push('transform-es2015-modules-commonjs');
   return options;
 };
 
-exports.amd = function() {
+exports.amd = function () {
   var options = exports.base();
   options.plugins.push('transform-es2015-modules-amd');
   return options;
 };
 
-exports.system = function() {
+exports.system = function () {
   var options = exports.base();
   options.plugins.push('transform-es2015-modules-systemjs');
   return options;
 };
 
-exports.es2015 = function() {
-  var options = exports.base();
+exports.es2015 = function () {
+  var options     = exports.base();
   options.presets = ['stage-1'];
   return options;
 };

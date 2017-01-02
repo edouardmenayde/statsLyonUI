@@ -1,10 +1,12 @@
 <template>
 
   <datamap
-    if.bind="dataSet"
-    dataset.bind="dataSet"
+    if.bind="dataset && stations"
+    dataset.bind="dataset"
+    stations-stats.bind="stations"
     file="adrvoielieuadrarrond.json"
-    colorRange.bind="colorRange">
+    color-range.bind="colorRange"
+  >
   </datamap>
 
 </template>

@@ -1,18 +1,19 @@
 import {inject} from 'aurelia-framework';
 import {Endpoint} from 'aurelia-api';
+import moment from 'moment';
 
 @inject(Endpoint.of('api'))
 export class Map {
   colorRange = ['brown', 'steelblue'];
 
-  dataSet = null;
+  dataset = null;
 
   stats = null;
 
-  towns = null;
+  stations = null;
 
-  setDataSet() {
-    this.dataSet = {
+  setDataset() {
+    this.dataset = {
       title  : 'Number of stands',
       data   : this.stats,
       toFetch: 'sum.value'
@@ -35,6 +36,18 @@ export class Map {
       });
   }
 
+  fetchStationsStats() {
+    const map = `status?from=${moment().subtract(5, 'hours').utc().format()}&to=${moment().utc().format()}`;
+    this.endpoint
+      .find(map)
+      .then(response => {
+        this.stations = response;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   fetchStats() {
     this.endpoint
       .post('station/stat', {
@@ -42,7 +55,7 @@ export class Map {
       })
       .then(response => {
         this.stats = response;
-        this.setDataSet();
+        this.setDataset();
       })
       .catch(error => {
         console.error(error);
@@ -52,5 +65,6 @@ export class Map {
 
   attached() {
     this.fetchTowns();
+    this.fetchStationsStats();
   }
 }
