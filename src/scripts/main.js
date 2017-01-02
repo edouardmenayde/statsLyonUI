@@ -1,3 +1,5 @@
+import 'fetch'; // Fetch polyfill
+import 'intl'; // Intl polyfill
 import routes from "config/routes";
 import appConfig from "config/app";
 import Backend from "i18next-xhr-backend";
@@ -64,6 +66,7 @@ export function configure(aurelia) {
 
     .globalResources('tool/floatFormatValueConverter')
     .globalResources('tool/dateFormatValueConverter')
+    .globalResources('tool/hourFormatValueConverter')
     .globalResources('tool/titleFormatValueConverter')
   ;
 
@@ -78,5 +81,11 @@ export function configure(aurelia) {
 function configureRouter(config) {
   config.title = appConfig.title;
 
+  config.options.pushState = true;
+
+  config.options.root = '/';
+
   config.map(routes);
+
+  config.fallbackRoute('/404'); // Be careful to put a real route not name of the route !
 }

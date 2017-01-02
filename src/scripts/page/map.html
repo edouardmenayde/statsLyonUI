@@ -1,12 +1,12 @@
 <template>
 
-  <!--<datamap-->
-    <!--if.bind="dataSet"-->
-    <!--dataset.bind="dataSet"-->
-    <!--file="adrvoielieuadrarrond.json"-->
-    <!--colorRange.bind="colorRange">-->
-  <!--</datamap>-->
-
-
+  <datamap
+    if.bind="dataset && stations"
+    dataset.bind="dataset"
+    stations-stats.bind="stations"
+    file="adrvoielieuadrarrond.json"
+    color-range.bind="colorRange"
+  >
+  </datamap>
 
 </template>

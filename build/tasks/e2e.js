@@ -34,7 +34,7 @@ gulp.task('build-e2e', ['clean-e2e'], function() {
 gulp.task('e2e', ['build-e2e'], function(cb) {
   return gulp.src(paths.e2eSpecsDist + '**/*.js')
     .pipe(protractor({
-      configFile: 'protractor.conf.js',
+      configFile: './protractor.conf.js',
       args: ['--baseUrl', 'http://127.0.0.1:9000']
     }))
     .on('end', function() { process.exit(); })

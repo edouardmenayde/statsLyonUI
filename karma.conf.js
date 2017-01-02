@@ -14,11 +14,11 @@ module.exports = function (config) {
     jspm: {
       // Edit this to your needs
       loadFiles : ['test/unit/setup.js', 'test/unit/**/*.js'],
-      serveFiles: ['src/**/*.js'],
+      serveFiles: ['src/scripts/**/*.js'],
       paths     : {
         '*'       : '*',
-        'github:*': 'jspm_packages/github/*',
-        'npm:*'   : 'jspm_packages/npm/*'
+        'github:*': 'src/jspm_packages/github/*',
+        'npm:*'   : 'src/jspm_packages/npm/*'
       }
     },
 
@@ -33,7 +33,7 @@ module.exports = function (config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors      : {
       'test/**/*.js': ['babel'],
-      'src/**/*.js' : ['babel']
+      'src/scripts/**/*.js' : ['babel']
     },
     'babelPreprocessor': {
       options: {
@@ -67,7 +67,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chromium', 'Chrome'],
+    browsers: ['Chrome'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

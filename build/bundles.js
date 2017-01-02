@@ -6,14 +6,14 @@ module.exports = {
         "**/*.html!text",
         "**/*.css!text"
       ],
-      "options": {
-        "inject":   true,
-        "minify":   true,
+      "options" : {
+        "inject"  : true,
+        "minify"  : true,
         "depCache": true,
-        "rev":      false
+        "rev"     : false
       }
     },
-   "scripts/vendor": {
+    "scripts/vendor"   : {
       "includes": [
         "npm:get-prop",
         "systemjs/plugin-text",
@@ -45,16 +45,19 @@ module.exports = {
         "d3",
         "c3",
         "homefront",
-        // "bootstrap/css/bootstrap.css!text",
+        "raf",
+        "intl",
+        "webcomponents/webcomponentsjs/MutationObserver",
         "fetch",
         "i18next-xhr-backend",
-        "jquery"
+        "jquery",
+        "screenfull"
       ],
-      "options":  {
-        "inject":   true,
-        "minify":   true,
+      "options" : {
+        "inject"  : true,
+        "minify"  : true,
         "depCache": false,
-        "rev":      false
+        "rev"     : false
       }
     }
   }
