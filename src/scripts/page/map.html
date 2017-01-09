@@ -1,9 +1,10 @@
 <template>
 
   <datamap
-    if.bind="dataset && stations"
+    if.bind="dataset && stations && traffic"
     dataset.bind="dataset"
     stations-stats.bind="stations"
+    traffic.bind="traffic"
     file="adrvoielieuadrarrond.json"
     color-range.bind="colorRange"
   >

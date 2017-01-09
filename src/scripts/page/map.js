@@ -12,6 +12,8 @@ export class Map {
 
   stations = null;
 
+  traffic = null;
+
   setDataset() {
     this.dataset = {
       title  : 'Number of stands',
@@ -36,10 +38,20 @@ export class Map {
       });
   }
 
-  fetchStationsStats() {
-    const map = `status?from=${moment().subtract(5, 'hours').utc().format()}&to=${moment().utc().format()}`;
+  fetchTraffic() {
     this.endpoint
-      .find(map)
+      .find(`traffic`)
+      .then(response => {
+        this.traffic = response;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  fetchStationsStats() {
+    this.endpoint
+      .find(`status?from=${moment().subtract(5, 'hours').utc().format()}&to=${moment().utc().format()}`)
       .then(response => {
         this.stations = response;
       })
@@ -66,5 +78,6 @@ export class Map {
   attached() {
     this.fetchTowns();
     this.fetchStationsStats();
+    this.fetchTraffic();
   }
 }
