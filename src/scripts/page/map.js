@@ -1,6 +1,6 @@
-import {inject} from 'aurelia-framework';
-import {Endpoint} from 'aurelia-api';
-import moment from 'moment';
+import {inject} from "aurelia-framework";
+import {Endpoint} from "aurelia-api";
+import moment from "moment";
 
 @inject(Endpoint.of('api'))
 export class Map {
@@ -76,8 +76,8 @@ export class Map {
 
 
   attached() {
-    this.fetchTowns();
-    this.fetchStationsStats();
-    this.fetchTraffic();
+    // this.fetchTowns();
+    // this.fetchStationsStats();
+    // this.fetchTraffic();
   }
 }

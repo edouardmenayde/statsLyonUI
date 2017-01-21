@@ -287,8 +287,6 @@ export class Datamap {
     const stroke = '#303030';
     const fill   = '#121212';
 
-    // const zoom = d3.zoom().x(x).y(y).on('zoom', zoomed);
-
     this.mapVectors
       .selectAll('path')
       .data(this.featureCollection.features)
@@ -299,21 +297,21 @@ export class Datamap {
       })
       .attr('d', this.path)
       .style('stroke', stroke)
-      .attr('fill', fill);
+      .attr('fill', fill)
 
     // .on('mousemove', this.showTooltip.bind(this))
     // .on('mouseout', this.hideTooltip.bind(this))
-    // .attr('fill', (feature) => {
-    //   const key = normalizeText(feature.properties.prettyName);
-    //
-    //   const value = homefront.fetch(`data.${key}.${this.dataset.toFetch}`, null);
-    //
-    //   if (!value) {
-    //     return 'white';
-    //   }
-    //
-    //   return this.colorScale(value);
-    // });
+    .attr('fill', (feature) => {
+      const key = normalizeText(feature.properties.prettyName);
+
+      const value = homefront.fetch(`data.${key}.${this.dataset.toFetch}`, null);
+
+      if (!value) {
+        return 'white';
+      }
+
+      return this.colorScale(value);
+    });
 
 
   }
@@ -406,8 +404,8 @@ export class Datamap {
 
   draw() {
     this.setupMap();
-    // this.setColorScale();
-    // this.drawLegend();
+    this.setColorScale();
+    this.drawLegend();
     this.setProjection2();
     this.drawSections();
     this.setProjection();

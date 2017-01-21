@@ -44,6 +44,7 @@ System.config({
     "intl": "npm:intl@1.2.5",
     "jquery": "npm:jquery@2.2.4",
     "moment": "npm:moment@2.17.1",
+    "moment-round": "npm:moment-round@1.0.1",
     "raf": "npm:raf@3.3.0",
     "remove-accents": "npm:remove-accents@0.3.0",
     "screenfull": "npm:screenfull@3.0.2",
@@ -563,6 +564,9 @@ System.config({
     "npm:intl@1.2.5": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
+    "npm:moment-round@1.0.1": {
+      "moment": "npm:moment@2.17.1"
+    },
     "npm:optimist@0.3.7": {
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
@@ -744,79 +748,6 @@ System.config({
       "object-keys": "npm:object-keys@0.4.0"
     }
   },
-  depCache: {
-    "app.js": [
-      "aurelia-framework",
-      "aurelia-router"
-    ],
-    "component/chart.js": [
-      "aurelia-framework",
-      "c3"
-    ],
-    "component/datamap.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "aurelia-pal",
-      "d3",
-      "remove-accents",
-      "homefront",
-      "screenfull"
-    ],
-    "component/datapie.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "aurelia-pal",
-      "d3"
-    ],
-    "component/results.js": [
-      "aurelia-framework"
-    ],
-    "component/search.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "aurelia-router",
-      "aurelia-pal"
-    ],
-    "component/tooltip.js": [
-      "aurelia-framework",
-      "aurelia-pal"
-    ],
-    "main.js": [
-      "fetch",
-      "intl",
-      "config/routes",
-      "config/app",
-      "i18next-xhr-backend",
-      "aurelia-router",
-      "bootstrap",
-      "font-awesome/css/font-awesome.min.css!text"
-    ],
-    "page/index.js": [
-      "aurelia-framework",
-      "aurelia-api"
-    ],
-    "page/livecam.js": [
-      "aurelia-framework",
-      "aurelia-api"
-    ],
-    "page/map.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "moment"
-    ],
-    "page/station.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "moment",
-      "aurelia-notification"
-    ],
-    "tool/dateFormatValueConverter.js": [
-      "moment"
-    ],
-    "tool/hourFormatValueConverter.js": [
-      "moment"
-    ]
-  },
   bundles: {
     "app-build.js": [
       "app.html!github:systemjs/plugin-text@0.0.8.js",
@@ -826,14 +757,20 @@ System.config({
       "component/core/nav-bar.html!github:systemjs/plugin-text@0.0.8.js",
       "component/datamap.html!github:systemjs/plugin-text@0.0.8.js",
       "component/datamap.js",
+      "component/datamap2.html!github:systemjs/plugin-text@0.0.8.js",
+      "component/datamap2.js",
       "component/datapie.html!github:systemjs/plugin-text@0.0.8.js",
       "component/datapie.js",
+      "component/layer.js",
+      "component/political-map-layer.js",
       "component/results.html!github:systemjs/plugin-text@0.0.8.js",
       "component/results.js",
       "component/search.html!github:systemjs/plugin-text@0.0.8.js",
       "component/search.js",
+      "component/stations-layer.js",
       "component/tooltip.html!github:systemjs/plugin-text@0.0.8.js",
       "component/tooltip.js",
+      "component/traffic-layer.js",
       "config/app.js",
       "config/routes.js",
       "main.js",
@@ -1038,6 +975,112 @@ System.config({
       "npm:remove-accents@0.3.0/index.js",
       "npm:screenfull@3.0.2.js",
       "npm:screenfull@3.0.2/dist/screenfull.js"
+    ]
+  },
+  depCache: {
+    "app.js": [
+      "aurelia-framework",
+      "aurelia-router"
+    ],
+    "component/chart.js": [
+      "aurelia-framework",
+      "c3"
+    ],
+    "component/datamap.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "aurelia-pal",
+      "d3",
+      "remove-accents",
+      "homefront",
+      "screenfull"
+    ],
+    "component/datamap2.js": [
+      "aurelia-framework",
+      "aurelia-pal",
+      "d3",
+      "screenfull",
+      "./political-map-layer",
+      "./traffic-layer",
+      "moment",
+      "moment-round"
+    ],
+    "component/datapie.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "aurelia-pal",
+      "d3"
+    ],
+    "component/layer.js": [
+      "d3"
+    ],
+    "component/political-map-layer.js": [
+      "d3",
+      "aurelia-framework",
+      "aurelia-api",
+      "./layer",
+      "./stations-layer"
+    ],
+    "component/results.js": [
+      "aurelia-framework"
+    ],
+    "component/search.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "aurelia-router",
+      "aurelia-pal"
+    ],
+    "component/stations-layer.js": [
+      "d3",
+      "aurelia-framework",
+      "aurelia-api",
+      "moment",
+      "./layer"
+    ],
+    "component/tooltip.js": [
+      "aurelia-framework",
+      "aurelia-pal"
+    ],
+    "component/traffic-layer.js": [
+      "d3",
+      "aurelia-framework",
+      "aurelia-api",
+      "./layer"
+    ],
+    "main.js": [
+      "fetch",
+      "intl",
+      "config/routes",
+      "config/app",
+      "i18next-xhr-backend",
+      "aurelia-router",
+      "bootstrap",
+      "font-awesome/css/font-awesome.min.css!text"
+    ],
+    "page/index.js": [
+      "aurelia-framework",
+      "aurelia-api"
+    ],
+    "page/livecam.js": [
+      "aurelia-framework",
+      "aurelia-api"
+    ],
+    "page/map.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "moment"
+    ],
+    "page/station.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "moment",
+      "aurelia-notification"
+    ],
+    "tool/dateFormatValueConverter.js": [
+      "moment"
+    ],
+    "tool/hourFormatValueConverter.js": [
+      "moment"
     ]
   }
 });

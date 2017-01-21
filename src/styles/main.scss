@@ -76,15 +76,6 @@ $navbar-height: $navbar-inner-height + $navbar-inner-height / 2;
     }
   }
 
-  .station-selector {
-    @media screen and (max-width: 600px) {
-      width: 40%;
-    }
-    @media screen and (min-width: 600px) {
-      width: 30%;
-    }
-  }
-
 }
 
 .splash {
