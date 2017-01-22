@@ -12,7 +12,7 @@
     "endpoints": [
       {
         "name": "api",
-        "endpoint": "http://api.stats-lyon:8020/",
+        "endpoint": "http://api.stats-lyon.localhost:8020/",
         "default": true
       }
     ]
