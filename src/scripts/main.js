@@ -14,8 +14,8 @@ export function configure(aurelia) {
 
     .plugin('aurelia-configuration', config => {
       config.setEnvironments({
+        staging    : ['stats-lyon'],
         development: ['localhost'],
-        staging    : ['localhost:8020'],
         production : ['stats-lyon.fr', 'www.stats-lyon.fr']
       });
       config.setDirectory('/scripts');
