@@ -11,7 +11,7 @@ module.exports = {
   html        : scriptRoot + '**/*.html',
   css         : scriptRoot + '**/*.css',
   sass        : root + 'styles/**/*.scss',
-  json        : root + '*.json',
+  json        : root + '**/*.json',
   style       : root + 'styles/**/*.css',
   styles      : 'styles/',
   scripts     : 'scripts/',

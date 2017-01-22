@@ -51,7 +51,8 @@ module.exports = {
         "fetch",
         "i18next-xhr-backend",
         "jquery",
-        "screenfull"
+        "screenfull",
+        "aurelia-configuration"
       ],
       "options" : {
         "inject"  : true,

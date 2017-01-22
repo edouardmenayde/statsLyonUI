@@ -1,5 +1,6 @@
 .dev
 node_modules
+src/jspm_packages
 ./jspm_packages
 bower_components
 .idea
