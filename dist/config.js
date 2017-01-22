@@ -12,7 +12,8 @@ System.config({
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.1",
     "aurelia-charts": "npm:aurelia-charts@0.1.1",
     "aurelia-charts-c3": "npm:aurelia-charts-c3@0.1.1",
-    "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+    "aurelia-configuration": "npm:aurelia-configuration@1.0.16",
+    "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
     "aurelia-event-aggregator": "npm:aurelia-event-aggregator@1.0.1",
     "aurelia-fetch-client": "npm:aurelia-fetch-client@1.1.0",
     "aurelia-framework": "npm:aurelia-framework@1.0.8",
@@ -25,7 +26,7 @@ System.config({
     "aurelia-pal-browser": "npm:aurelia-pal-browser@1.1.0",
     "aurelia-polyfills": "npm:aurelia-polyfills@1.1.1",
     "aurelia-router": "npm:aurelia-router@1.1.0",
-    "aurelia-templating-binding": "npm:aurelia-templating-binding@1.1.0",
+    "aurelia-templating-binding": "npm:aurelia-templating-binding@1.2.0",
     "aurelia-templating-resources": "npm:aurelia-templating-resources@1.2.0",
     "aurelia-templating-router": "npm:aurelia-templating-router@1.0.1",
     "aurelia-tooltip": "npm:aurelia-tooltip@1.1.0",
@@ -113,16 +114,16 @@ System.config({
     "npm:aurelia-animator-css@1.0.1": {
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
       "aurelia-pal": "npm:aurelia-pal@1.2.0",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4"
+      "aurelia-templating": "npm:aurelia-templating@1.2.0"
     },
     "npm:aurelia-api@3.1.1": {
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-fetch-client": "npm:aurelia-fetch-client@1.1.0",
       "aurelia-framework": "npm:aurelia-framework@1.0.8",
       "aurelia-path": "npm:aurelia-path@1.1.1",
       "extend": "npm:extend@3.0.0"
     },
-    "npm:aurelia-binding@1.1.0": {
+    "npm:aurelia-binding@1.1.1": {
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
       "aurelia-pal": "npm:aurelia-pal@1.2.0",
@@ -139,8 +140,8 @@ System.config({
       "aurelia-pal-browser": "npm:aurelia-pal-browser@1.1.0",
       "aurelia-polyfills": "npm:aurelia-polyfills@1.1.1",
       "aurelia-router": "npm:aurelia-router@1.1.0",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4",
-      "aurelia-templating-binding": "npm:aurelia-templating-binding@1.1.0",
+      "aurelia-templating": "npm:aurelia-templating@1.2.0",
+      "aurelia-templating-binding": "npm:aurelia-templating-binding@1.2.0",
       "aurelia-templating-resources": "npm:aurelia-templating-resources@1.2.0",
       "aurelia-templating-router": "npm:aurelia-templating-router@1.0.1"
     },
@@ -150,14 +151,27 @@ System.config({
     },
     "npm:aurelia-charts@0.1.1": {
       "array-equal": "npm:array-equal@1.0.0",
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-form": "npm:aurelia-form@0.1.12",
       "aurelia-framework": "npm:aurelia-framework@1.0.8",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "extend": "npm:extend@3.0.0",
       "typer": "npm:typer@1.1.0"
     },
-    "npm:aurelia-dependency-injection@1.2.1": {
+    "npm:aurelia-configuration@1.0.16": {
+      "aurelia-binding": "npm:aurelia-binding@1.1.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
+      "aurelia-framework": "npm:aurelia-framework@1.0.8",
+      "aurelia-loader": "npm:aurelia-loader@1.0.0",
+      "aurelia-logging": "npm:aurelia-logging@1.2.0",
+      "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
+      "aurelia-pal": "npm:aurelia-pal@1.2.0",
+      "aurelia-path": "npm:aurelia-path@1.1.1",
+      "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0",
+      "aurelia-templating": "npm:aurelia-templating@1.2.0",
+      "aurelia-templating-binding": "npm:aurelia-templating-binding@1.2.0"
+    },
+    "npm:aurelia-dependency-injection@1.3.0": {
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
       "aurelia-pal": "npm:aurelia-pal@1.2.0"
     },
@@ -165,7 +179,7 @@ System.config({
       "aurelia-logging": "npm:aurelia-logging@1.2.0"
     },
     "npm:aurelia-form@0.1.12": {
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-framework": "npm:aurelia-framework@1.0.8",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-validatejs": "npm:aurelia-validatejs@0.6.0",
@@ -173,28 +187,28 @@ System.config({
       "extend": "npm:extend@3.0.0"
     },
     "npm:aurelia-framework@1.0.8": {
-      "aurelia-binding": "npm:aurelia-binding@1.1.0",
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-binding": "npm:aurelia-binding@1.1.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-loader": "npm:aurelia-loader@1.0.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
       "aurelia-pal": "npm:aurelia-pal@1.2.0",
       "aurelia-path": "npm:aurelia-path@1.1.1",
       "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4"
+      "aurelia-templating": "npm:aurelia-templating@1.2.0"
     },
     "npm:aurelia-history-browser@1.0.0": {
       "aurelia-history": "npm:aurelia-history@1.0.0",
       "aurelia-pal": "npm:aurelia-pal@1.2.0"
     },
     "npm:aurelia-i18n@1.2.3": {
-      "aurelia-binding": "npm:aurelia-binding@1.1.0",
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-binding": "npm:aurelia-binding@1.1.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-event-aggregator": "npm:aurelia-event-aggregator@1.0.1",
       "aurelia-loader": "npm:aurelia-loader@1.0.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-pal": "npm:aurelia-pal@1.2.0",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4",
+      "aurelia-templating": "npm:aurelia-templating@1.2.0",
       "aurelia-templating-resources": "npm:aurelia-templating-resources@1.2.0",
       "i18next": "npm:i18next@3.5.2",
       "intl": "npm:intl@1.2.5"
@@ -215,7 +229,7 @@ System.config({
       "aurelia-pal": "npm:aurelia-pal@1.2.0"
     },
     "npm:aurelia-notification@1.0.0": {
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-i18n": "npm:aurelia-i18n@1.2.3",
       "aurelia-pal": "npm:aurelia-pal@1.2.0",
       "extend": "npm:extend@3.0.0",
@@ -231,7 +245,7 @@ System.config({
       "aurelia-path": "npm:aurelia-path@1.1.1"
     },
     "npm:aurelia-router@1.1.0": {
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-event-aggregator": "npm:aurelia-event-aggregator@1.0.1",
       "aurelia-history": "npm:aurelia-history@1.0.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
@@ -241,35 +255,35 @@ System.config({
     "npm:aurelia-task-queue@1.1.0": {
       "aurelia-pal": "npm:aurelia-pal@1.2.0"
     },
-    "npm:aurelia-templating-binding@1.1.0": {
-      "aurelia-binding": "npm:aurelia-binding@1.1.0",
+    "npm:aurelia-templating-binding@1.2.0": {
+      "aurelia-binding": "npm:aurelia-binding@1.1.1",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4"
+      "aurelia-templating": "npm:aurelia-templating@1.2.0"
     },
     "npm:aurelia-templating-resources@1.2.0": {
-      "aurelia-binding": "npm:aurelia-binding@1.1.0",
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-binding": "npm:aurelia-binding@1.1.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-loader": "npm:aurelia-loader@1.0.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
       "aurelia-pal": "npm:aurelia-pal@1.2.0",
       "aurelia-path": "npm:aurelia-path@1.1.1",
       "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4"
+      "aurelia-templating": "npm:aurelia-templating@1.2.0"
     },
     "npm:aurelia-templating-router@1.0.1": {
-      "aurelia-binding": "npm:aurelia-binding@1.1.0",
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-binding": "npm:aurelia-binding@1.1.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
       "aurelia-pal": "npm:aurelia-pal@1.2.0",
       "aurelia-path": "npm:aurelia-path@1.1.1",
       "aurelia-router": "npm:aurelia-router@1.1.0",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4"
+      "aurelia-templating": "npm:aurelia-templating@1.2.0"
     },
-    "npm:aurelia-templating@1.1.4": {
-      "aurelia-binding": "npm:aurelia-binding@1.1.0",
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+    "npm:aurelia-templating@1.2.0": {
+      "aurelia-binding": "npm:aurelia-binding@1.1.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-loader": "npm:aurelia-loader@1.0.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
@@ -278,10 +292,10 @@ System.config({
       "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0"
     },
     "npm:aurelia-tooltip@1.1.0": {
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
       "aurelia-pal": "npm:aurelia-pal@1.2.0",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4",
+      "aurelia-templating": "npm:aurelia-templating@1.2.0",
       "tether": "npm:tether@1.4.0"
     },
     "npm:aurelia-validatejs@0.6.0": {
@@ -290,24 +304,24 @@ System.config({
       "validate.js": "npm:validate.js@0.10.0"
     },
     "npm:aurelia-validation@0.10.1": {
-      "aurelia-binding": "npm:aurelia-binding@1.1.0",
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-binding": "npm:aurelia-binding@1.1.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
       "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4"
+      "aurelia-templating": "npm:aurelia-templating@1.2.0"
     },
     "npm:aurelia-validation@0.11.0": {
-      "aurelia-binding": "npm:aurelia-binding@1.1.0",
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-binding": "npm:aurelia-binding@1.1.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",
       "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4"
+      "aurelia-templating": "npm:aurelia-templating@1.2.0"
     },
     "npm:aurelia-view-manager@0.0.7": {
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.2.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.3.0",
       "aurelia-logging": "npm:aurelia-logging@1.2.0",
       "aurelia-path": "npm:aurelia-path@1.1.1",
-      "aurelia-templating": "npm:aurelia-templating@1.1.4",
+      "aurelia-templating": "npm:aurelia-templating@1.2.0",
       "extend": "npm:extend@3.0.0"
     },
     "npm:bluebird@3.4.1": {
@@ -744,79 +758,6 @@ System.config({
       "object-keys": "npm:object-keys@0.4.0"
     }
   },
-  depCache: {
-    "app.js": [
-      "aurelia-framework",
-      "aurelia-router"
-    ],
-    "component/chart.js": [
-      "aurelia-framework",
-      "c3"
-    ],
-    "component/datamap.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "aurelia-pal",
-      "d3",
-      "remove-accents",
-      "homefront",
-      "screenfull"
-    ],
-    "component/datapie.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "aurelia-pal",
-      "d3"
-    ],
-    "component/results.js": [
-      "aurelia-framework"
-    ],
-    "component/search.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "aurelia-router",
-      "aurelia-pal"
-    ],
-    "component/tooltip.js": [
-      "aurelia-framework",
-      "aurelia-pal"
-    ],
-    "main.js": [
-      "fetch",
-      "intl",
-      "config/routes",
-      "config/app",
-      "i18next-xhr-backend",
-      "aurelia-router",
-      "bootstrap",
-      "font-awesome/css/font-awesome.min.css!text"
-    ],
-    "page/index.js": [
-      "aurelia-framework",
-      "aurelia-api"
-    ],
-    "page/livecam.js": [
-      "aurelia-framework",
-      "aurelia-api"
-    ],
-    "page/map.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "moment"
-    ],
-    "page/station.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "moment",
-      "aurelia-notification"
-    ],
-    "tool/dateFormatValueConverter.js": [
-      "moment"
-    ],
-    "tool/hourFormatValueConverter.js": [
-      "moment"
-    ]
-  },
   bundles: {
     "app-build.js": [
       "app.html!github:systemjs/plugin-text@0.0.8.js",
@@ -866,12 +807,16 @@ System.config({
       "github:webcomponents/webcomponentsjs@0.7.23/MutationObserver.js",
       "npm:aurelia-api@3.1.1.js",
       "npm:aurelia-api@3.1.1/aurelia-api.js",
-      "npm:aurelia-binding@1.1.0.js",
-      "npm:aurelia-binding@1.1.0/aurelia-binding.js",
+      "npm:aurelia-binding@1.1.1.js",
+      "npm:aurelia-binding@1.1.1/aurelia-binding.js",
       "npm:aurelia-bootstrapper@1.0.1.js",
       "npm:aurelia-bootstrapper@1.0.1/aurelia-bootstrapper.js",
-      "npm:aurelia-dependency-injection@1.2.1.js",
-      "npm:aurelia-dependency-injection@1.2.1/aurelia-dependency-injection.js",
+      "npm:aurelia-configuration@1.0.16.js",
+      "npm:aurelia-configuration@1.0.16/aurelia-configuration.js",
+      "npm:aurelia-configuration@1.0.16/deep-extend.js",
+      "npm:aurelia-configuration@1.0.16/index.js",
+      "npm:aurelia-dependency-injection@1.3.0.js",
+      "npm:aurelia-dependency-injection@1.3.0/aurelia-dependency-injection.js",
       "npm:aurelia-event-aggregator@1.0.1.js",
       "npm:aurelia-event-aggregator@1.0.1/aurelia-event-aggregator.js",
       "npm:aurelia-fetch-client@1.1.0.js",
@@ -919,8 +864,8 @@ System.config({
       "npm:aurelia-router@1.1.0/aurelia-router.js",
       "npm:aurelia-task-queue@1.1.0.js",
       "npm:aurelia-task-queue@1.1.0/aurelia-task-queue.js",
-      "npm:aurelia-templating-binding@1.1.0.js",
-      "npm:aurelia-templating-binding@1.1.0/aurelia-templating-binding.js",
+      "npm:aurelia-templating-binding@1.2.0.js",
+      "npm:aurelia-templating-binding@1.2.0/aurelia-templating-binding.js",
       "npm:aurelia-templating-resources@1.2.0.js",
       "npm:aurelia-templating-resources@1.2.0/abstract-repeater.js",
       "npm:aurelia-templating-resources@1.2.0/analyze-view-factory.js",
@@ -958,8 +903,8 @@ System.config({
       "npm:aurelia-templating-router@1.0.1/route-href.js",
       "npm:aurelia-templating-router@1.0.1/route-loader.js",
       "npm:aurelia-templating-router@1.0.1/router-view.js",
-      "npm:aurelia-templating@1.1.4.js",
-      "npm:aurelia-templating@1.1.4/aurelia-templating.js",
+      "npm:aurelia-templating@1.2.0.js",
+      "npm:aurelia-templating@1.2.0/aurelia-templating.js",
       "npm:aurelia-validation@0.11.0.js",
       "npm:aurelia-validation@0.11.0/aurelia-validation.js",
       "npm:aurelia-validation@0.11.0/property-info.js",
@@ -1038,6 +983,80 @@ System.config({
       "npm:remove-accents@0.3.0/index.js",
       "npm:screenfull@3.0.2.js",
       "npm:screenfull@3.0.2/dist/screenfull.js"
+    ]
+  },
+  depCache: {
+    "app.js": [
+      "aurelia-framework",
+      "aurelia-router"
+    ],
+    "component/chart.js": [
+      "aurelia-framework",
+      "c3"
+    ],
+    "component/datamap.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "aurelia-pal",
+      "d3",
+      "remove-accents",
+      "homefront",
+      "screenfull"
+    ],
+    "component/datapie.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "aurelia-pal",
+      "d3"
+    ],
+    "component/results.js": [
+      "aurelia-framework"
+    ],
+    "component/search.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "aurelia-router",
+      "aurelia-pal"
+    ],
+    "component/tooltip.js": [
+      "aurelia-framework",
+      "aurelia-pal"
+    ],
+    "main.js": [
+      "fetch",
+      "intl",
+      "config/routes",
+      "config/app",
+      "i18next-xhr-backend",
+      "aurelia-router",
+      "aurelia-configuration",
+      "bootstrap",
+      "font-awesome/css/font-awesome.min.css!text"
+    ],
+    "page/index.js": [
+      "aurelia-framework",
+      "aurelia-api"
+    ],
+    "page/livecam.js": [
+      "aurelia-framework",
+      "aurelia-api"
+    ],
+    "page/map.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "moment"
+    ],
+    "page/station.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "moment",
+      "aurelia-notification"
+    ],
+    "tool/dateFormatValueConverter.js": [
+      "moment"
+    ],
+    "tool/hourFormatValueConverter.js": [
+      "moment"
     ]
   }
 });
