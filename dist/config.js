@@ -758,80 +758,6 @@ System.config({
       "object-keys": "npm:object-keys@0.4.0"
     }
   },
-  depCache: {
-    "app.js": [
-      "aurelia-framework",
-      "aurelia-router"
-    ],
-    "component/chart.js": [
-      "aurelia-framework",
-      "c3"
-    ],
-    "component/datamap.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "aurelia-pal",
-      "d3",
-      "remove-accents",
-      "homefront",
-      "screenfull"
-    ],
-    "component/datapie.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "aurelia-pal",
-      "d3"
-    ],
-    "component/results.js": [
-      "aurelia-framework"
-    ],
-    "component/search.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "aurelia-router",
-      "aurelia-pal"
-    ],
-    "component/tooltip.js": [
-      "aurelia-framework",
-      "aurelia-pal"
-    ],
-    "main.js": [
-      "fetch",
-      "intl",
-      "config/routes",
-      "config/app",
-      "i18next-xhr-backend",
-      "aurelia-router",
-      "aurelia-configuration",
-      "bootstrap",
-      "font-awesome/css/font-awesome.min.css!text"
-    ],
-    "page/index.js": [
-      "aurelia-framework",
-      "aurelia-api"
-    ],
-    "page/livecam.js": [
-      "aurelia-framework",
-      "aurelia-api"
-    ],
-    "page/map.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "moment"
-    ],
-    "page/station.js": [
-      "aurelia-framework",
-      "aurelia-api",
-      "moment",
-      "aurelia-notification"
-    ],
-    "tool/dateFormatValueConverter.js": [
-      "moment"
-    ],
-    "tool/hourFormatValueConverter.js": [
-      "moment"
-    ]
-  },
   bundles: {
     "app-build.js": [
       "app.html!github:systemjs/plugin-text@0.0.8.js",
@@ -1057,6 +983,80 @@ System.config({
       "npm:remove-accents@0.3.0/index.js",
       "npm:screenfull@3.0.2.js",
       "npm:screenfull@3.0.2/dist/screenfull.js"
+    ]
+  },
+  depCache: {
+    "app.js": [
+      "aurelia-framework",
+      "aurelia-router"
+    ],
+    "component/chart.js": [
+      "aurelia-framework",
+      "c3"
+    ],
+    "component/datamap.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "aurelia-pal",
+      "d3",
+      "remove-accents",
+      "homefront",
+      "screenfull"
+    ],
+    "component/datapie.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "aurelia-pal",
+      "d3"
+    ],
+    "component/results.js": [
+      "aurelia-framework"
+    ],
+    "component/search.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "aurelia-router",
+      "aurelia-pal"
+    ],
+    "component/tooltip.js": [
+      "aurelia-framework",
+      "aurelia-pal"
+    ],
+    "main.js": [
+      "fetch",
+      "intl",
+      "config/routes",
+      "config/app",
+      "i18next-xhr-backend",
+      "aurelia-router",
+      "aurelia-configuration",
+      "bootstrap",
+      "font-awesome/css/font-awesome.min.css!text"
+    ],
+    "page/index.js": [
+      "aurelia-framework",
+      "aurelia-api"
+    ],
+    "page/livecam.js": [
+      "aurelia-framework",
+      "aurelia-api"
+    ],
+    "page/map.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "moment"
+    ],
+    "page/station.js": [
+      "aurelia-framework",
+      "aurelia-api",
+      "moment",
+      "aurelia-notification"
+    ],
+    "tool/dateFormatValueConverter.js": [
+      "moment"
+    ],
+    "tool/hourFormatValueConverter.js": [
+      "moment"
     ]
   }
 });
