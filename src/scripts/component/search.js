@@ -93,7 +93,6 @@ export class Search {
     this.bodyElement.removeEventListener('click', this.clickEventListener);
   }
 
-
   getLinkForSelectedItem() {
     const index = this.resultsElement.getSelectedItemIndex() >= 0 ? this.resultsElement.getSelectedItemIndex() : 0;
     return `station/${this.results[index]._source.stationID}`;

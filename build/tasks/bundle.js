@@ -72,10 +72,18 @@ gulp.task('copy-json', function () {
   return gulp.src(paths.json).pipe(gulp.dest(paths.distRoot));
 });
 
+gulp.task('copy-fonts', function () {
+  return gulp.src(paths.font).pipe(gulp.dest(paths.distRoot + paths.fonts));
+});
+
+gulp.task('copy-images', function () {
+  return gulp.src(paths.image).pipe(gulp.dest(paths.distRoot + paths.images));
+});
+
 gulp.task('bundle', function (callback) {
   return runSequence(
     'prepare-bundle',
-    ['copy-jspm', 'copy-config', 'copy-index', 'copy-scripts', 'copy-styles', 'copy-locales', 'export-normalized-resources', 'copy-json'],
+    ['copy-jspm', 'copy-config', 'copy-index', 'copy-scripts', 'copy-styles', 'copy-locales', 'export-normalized-resources', 'copy-json', 'copy-fonts', 'copy-images'],
     'clean-tmp',
     callback
   );

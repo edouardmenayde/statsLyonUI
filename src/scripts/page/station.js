@@ -73,6 +73,8 @@ export class Station {
 
   FIVE_MINUTE = 300000;
 
+  presets = [1, 2, 3, 5, 10];
+
   idChanged() {
     this.loadStation();
     this.firstLoad = true;

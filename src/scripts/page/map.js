@@ -1,6 +1,6 @@
-import {inject} from 'aurelia-framework';
-import {Endpoint} from 'aurelia-api';
-import moment from 'moment';
+import {inject} from "aurelia-framework";
+import {Endpoint} from "aurelia-api";
+import moment from "moment";
 
 @inject(Endpoint.of('api'))
 export class Map {
@@ -11,6 +11,8 @@ export class Map {
   stats = null;
 
   stations = null;
+
+  traffic = null;
 
   setDataset() {
     this.dataset = {
@@ -36,10 +38,20 @@ export class Map {
       });
   }
 
-  fetchStationsStats() {
-    const map = `status?from=${moment().subtract(5, 'hours').utc().format()}&to=${moment().utc().format()}`;
+  fetchTraffic() {
     this.endpoint
-      .find(map)
+      .find(`traffic`)
+      .then(response => {
+        this.traffic = response;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  fetchStationsStats() {
+    this.endpoint
+      .find(`status?from=${moment().subtract(5, 'hours').utc().format()}&to=${moment().utc().format()}`)
       .then(response => {
         this.stations = response;
       })
@@ -64,7 +76,8 @@ export class Map {
 
 
   attached() {
-    this.fetchTowns();
-    this.fetchStationsStats();
+    // this.fetchTowns();
+    // this.fetchStationsStats();
+    // this.fetchTraffic();
   }
 }

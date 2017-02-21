@@ -45,6 +45,7 @@ System.config({
     "intl": "npm:intl@1.2.5",
     "jquery": "npm:jquery@2.2.4",
     "moment": "npm:moment@2.17.1",
+    "moment-round": "npm:moment-round@1.0.1",
     "raf": "npm:raf@3.3.0",
     "remove-accents": "npm:remove-accents@0.3.0",
     "screenfull": "npm:screenfull@3.0.2",
@@ -576,6 +577,9 @@ System.config({
     },
     "npm:intl@1.2.5": {
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:moment-round@1.0.1": {
+      "moment": "npm:moment@2.17.1"
     },
     "npm:optimist@0.3.7": {
       "path": "github:jspm/nodelibs-path@0.1.0",

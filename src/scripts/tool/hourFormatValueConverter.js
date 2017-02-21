@@ -1,11 +1,20 @@
 import moment from 'moment';
 
 export class hourFormatValueConverter {
+
+  formatting   = 'HH:mm';
+  defaultValue = '∞:∞';
+
   toView(value) {
-    const format = 'HH:mm';
-    if (moment.isMoment(value)) {
-      return value.format(format);
+
+    if (!value) {
+      return this.defaultValue;
     }
-    return moment(value).format(format);
+
+    if (moment.isMoment(value)) {
+      return value.format(this.formatting);
+    }
+
+    return moment(value).format(this.formatting);
   }
 }

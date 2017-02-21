@@ -1,0 +1,23 @@
+#tooltip-container {
+  position: absolute;
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border: 1px solid;
+}
+
+.tooltip-key {
+  font-weight: bold;
+}
+
+.tooltip-value {
+  margin-left: 20px;
+  float: right;
+}
+
+.legend-wrapper {
+  stroke: black;
+  stroke-width: 1.5px;
+  fill-opacity: 0;
+}
+

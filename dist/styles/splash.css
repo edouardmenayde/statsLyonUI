@@ -1,0 +1,16 @@
+.splash {
+  text-align: center;
+  margin: 10% 0 0 0;
+  box-sizing: border-box; }
+  .splash .message {
+    font-size: 2.4rem;
+    color: #616161;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .splash .icon {
+    color: #616161;
+    text-align: center;
+    display: inline-block;
+    font-size: 2.4rem;
+    margin-top: 2.5rem; }
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3BsYXNoLmNzcyIsInNvdXJjZXMiOlsic3BsYXNoLnNjc3MiXSwic291cmNlc0NvbnRlbnQiOlsiLnNwbGFzaCB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luOiAxMCUgMCAwIDA7XG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG5cbiAgLm1lc3NhZ2Uge1xuICAgIGZvbnQtc2l6ZTogMi40cmVtO1xuICAgIGNvbG9yOiAjNjE2MTYxO1xuICAgIGZvbnQtZmFtaWx5OiBcIkhlbHZldGljYSBOZXVlXCIsIEhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWY7XG4gIH1cblxuICAuaWNvbiB7XG4gICAgY29sb3I6ICM2MTYxNjE7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICBmb250LXNpemU6IDIuNHJlbTtcbiAgICBtYXJnaW4tdG9wOiAyLjVyZW07XG4gIH1cbn1cbiJdLCJtYXBwaW5ncyI6IkFBQUEsQUFBQSxPQUFPLENBQUM7RUFDTixVQUFVLEVBQUUsTUFBTztFQUNuQixNQUFNLEVBQUUsU0FBVTtFQUNsQixVQUFVLEVBQUUsVUFBVyxHQWV4QjtFQWxCRCxBQUtFLE9BTEssQ0FLTCxRQUFRLENBQUM7SUFDUCxTQUFTLEVBQUUsTUFBTztJQUNsQixLQUFLLEVBQUUsT0FBUTtJQUNmLFdBQVcsRUFBRSw4Q0FBK0MsR0FDN0Q7RUFUSCxBQVdFLE9BWEssQ0FXTCxLQUFLLENBQUM7SUFDSixLQUFLLEVBQUUsT0FBUTtJQUNmLFVBQVUsRUFBRSxNQUFPO0lBQ25CLE9BQU8sRUFBRSxZQUFhO0lBQ3RCLFNBQVMsRUFBRSxNQUFPO0lBQ2xCLFVBQVUsRUFBRSxNQUFPLEdBQ3BCIiwibmFtZXMiOltdfQ== */

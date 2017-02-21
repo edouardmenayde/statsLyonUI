@@ -18,8 +18,9 @@ export class Datamap {
   @observable()
   featureCollection = null;
 
-  @observable()
-  stats = null;
+
+  @bindable()
+  traffic = null;
 
   @bindable()
   file = null;
@@ -58,6 +59,10 @@ export class Datamap {
     this.setSize();
   }
 
+  featuresTestChanged() {
+    this.reloadMap();
+  }
+
   setSize() {
     this.height = this.svgContainer.clientHeight;
     this.width  = this.svgContainer.clientWidth;
@@ -88,12 +93,10 @@ export class Datamap {
   }
 
   zoom() {
-    this.mapVectors.attr('transform', `translate(${d3.event.transform.x} ${d3.event.transform.y})scale(${d3.event.transform.k})`);
-    this.stationsVectors.attr('transform', `translate(${d3.event.transform.x} ${d3.event.transform.y})scale(${d3.event.transform.k})`);
+    this.map.attr('transform', `translate(${d3.event.transform.x} ${d3.event.transform.y})scale(${d3.event.transform.k})`);
   }
 
   setupMap() {
-
     if (this.map) {
       d3.select(this.svgElement).selectAll('*').remove();
     }
@@ -104,7 +107,15 @@ export class Datamap {
       .scale(1000)
       .translate([this.width / 2, this.height / 2]);
 
+    this.projection2 = d3.geoMercator();
+    this.projection2
+      .center([9, 45])
+      .scale(1000)
+      .translate([this.width / 2, this.height / 2]);
+
     this.path = d3.geoPath().projection(this.projection);
+
+    this.path2 = d3.geoPath().projection(this.projection2);
 
     this.zoomBehavior = d3
       .zoom()
@@ -113,25 +124,26 @@ export class Datamap {
       .translateExtent([[0, 0], [this.width, this.height]])
       .on('zoom', this.zoom.bind(this));
 
+    d3.select(this.svgElement).call(this.zoomBehavior);
+
     this.map = d3.select(this.svgElement)
       .attr('width', this.width)
       .attr('height', this.height)
-      .append('g')
-      .call(this.zoomBehavior);
+      .append('g');
 
     this.mapVectors = this.map.append('g').attr('class', 'polygon');
 
+    this.roadSections = this.map.append('g').attr('class', 'polygon');
+
     this.stationsVectors = this.map.append('g').attr('class', 'polygon');
 
+
     this.projection.scale(1).translate([0, 0]);
+    this.projection2.scale(1).translate([0, 0]);
   }
 
-  setProjection() {
-    const bounds = this.path.bounds(this.featureCollection);
-    const left   = bounds[0][0];
-    const right  = bounds[1][0];
-    const top    = bounds[0][1];
-    const bottom = bounds[1][1];
+  setProjection2() {
+    const [[left, top], [right, bottom]] = this.path.bounds(this.trafficCollection);
 
     const larger       = Math.max(
       (right - left) / this.width,
@@ -140,7 +152,23 @@ export class Datamap {
     const SCALING      = .95;
     const scale        = SCALING / larger;
     const centerWidth  = (this.width - scale * (right + left)) / 2;
-    const centerHeight = ((this.height - scale * (top + bottom)) / 2);
+    const centerHeight = (this.height - scale * (top + bottom)) / 2;
+    const translate    = [centerWidth, centerHeight];
+
+    this.projection2.scale(scale).translate(translate);
+  }
+
+  setProjection() {
+    const [[left, top], [right, bottom]] = this.path.bounds(this.featureCollection);
+
+    const larger       = Math.max(
+      (right - left) / this.width,
+      (bottom - top) / this.height
+    );
+    const SCALING      = .95;
+    const scale        = SCALING / larger;
+    const centerWidth  = (this.width - scale * (right + left)) / 2;
+    const centerHeight = (this.height - scale * (top + bottom)) / 2;
     const translate    = [centerWidth, centerHeight];
 
     this.projection.scale(scale).translate(translate);
@@ -196,7 +224,6 @@ export class Datamap {
         return d
       });
 
-
     const legendEntries = legend
       .append('g')
       .attr('class', 'legendEntries')
@@ -231,7 +258,6 @@ export class Datamap {
         return format(+extent[0]) + ' - ' + format(+extent[1]);
       });
 
-
     const legendAbsolutePosition = legend.node().getBoundingClientRect();
 
     const svgAbsolutePosition = this.svgElement.getBoundingClientRect();
@@ -261,8 +287,6 @@ export class Datamap {
     const stroke = '#303030';
     const fill   = '#121212';
 
-    // const zoom = d3.zoom().x(x).y(y).on('zoom', zoomed);
-
     this.mapVectors
       .selectAll('path')
       .data(this.featureCollection.features)
@@ -273,21 +297,21 @@ export class Datamap {
       })
       .attr('d', this.path)
       .style('stroke', stroke)
-      .attr('fill', fill);
+      .attr('fill', fill)
 
     // .on('mousemove', this.showTooltip.bind(this))
     // .on('mouseout', this.hideTooltip.bind(this))
-    // .attr('fill', (feature) => {
-    //   const key = normalizeText(feature.properties.prettyName);
-    //
-    //   const value = homefront.fetch(`data.${key}.${this.dataset.toFetch}`, null);
-    //
-    //   if (!value) {
-    //     return 'white';
-    //   }
-    //
-    //   return this.colorScale(value);
-    // });
+    .attr('fill', (feature) => {
+      const key = normalizeText(feature.properties.prettyName);
+
+      const value = homefront.fetch(`data.${key}.${this.dataset.toFetch}`, null);
+
+      if (!value) {
+        return 'white';
+      }
+
+      return this.colorScale(value);
+    });
 
 
   }
@@ -319,7 +343,7 @@ export class Datamap {
         return radius(station._source.availableStands);
       })
       .on('mouseover', (station) => {
-        this.tooltip.setValue(station._source.availableStands);
+        this.tooltip.setValue(`${station._source.name} : ${station._source.availableStands}`);
         this.tooltip.setPosition({
           x: d3.event.layerX,
           y: d3.event.layerY
@@ -330,18 +354,63 @@ export class Datamap {
       .attr('fill', '#164F70');
   }
 
+  drawSections() {
+    this.roadSections
+      .selectAll('path')
+      .data(this.trafficCollection.features)
+      .enter()
+      .append('path')
+      .attr('d', this.path2)
+      .attr('stroke-width', 0.2)
+      .attr('stroke', (feature) => {
+        const matchingFeature = this.traffic.values.find((trafficFeature) => {
+          return trafficFeature.twgid == feature.properties.twgid;
+        });
+
+        const state = matchingFeature ? matchingFeature.etat : '';
+
+        let color;
+        switch (state) {
+          case 'N':
+            color = '#000000';
+            break;
+          case 'O':
+            color = '#FF9632';
+            break;
+          case 'R':
+            color = '#a8002d';
+            break;
+          case 'V':
+            color = '#22ff22';
+            break;
+          case 'G':
+          default:
+            color = '#dbdbdb';
+            break;
+        }
+        return color;
+      })
+      .attr('fill', 'transparent')
+    // .on('mouseover', (feature) => {
+    //   this.tooltip.setValue(`${feature.properties.code} : ${feature.properties.libelle}`);
+    //   this.tooltip.setPosition({
+    //     x: d3.event.layerX,
+    //     y: d3.event.layerY
+    //   }, this.width);
+    //   this.tooltip.show();
+    // })
+    // .on('mouseout', this.hideTooltip.bind(this))
+  }
+
   draw() {
     this.setupMap();
-
+    this.setColorScale();
+    this.drawLegend();
+    this.setProjection2();
+    this.drawSections();
     this.setProjection();
-
-    // this.setColorScale();
-
-    // this.drawLegend();
-
     this.drawMap();
-
-    this.drawStations();
+    // this.drawStations();
   }
 
   fullscreen() {
@@ -354,23 +423,20 @@ export class Datamap {
     this.setSize();
   }
 
-  zoomIn() {
-    console.info('Zoom in');
-    this.map.call(this.zoomBehavior.transform, d3.zoomIdentity);
-  }
-
-  zoomOut() {
-
-  }
-
   attached() {
     window.addEventListener('resize', this.windowResizeEventHandler);
-    d3.json(this.file, (error, response) => {
+    d3.json('pvopatrimoinevoiriepvotrafic.json', (error, response) => {
       if (error) {
-        return console.error(error);
+        console.error(error);
       }
-      this.featureCollection = response;
-      this.stationSelected   = this.stationsStats.length - 1
+      this.trafficCollection = response;
+      d3.json(this.file, (error, response) => {
+        if (error) {
+          return console.error(error);
+        }
+        this.featureCollection = response;
+        this.stationSelected   = this.stationsStats.length - 1
+      });
     });
   }
 

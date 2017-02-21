@@ -1,0 +1,11 @@
+@import './variables';
+
+.livecams {
+  height: 100vh - $navbar-height;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
