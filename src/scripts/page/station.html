@@ -1,9 +1,12 @@
 <template>
   <div class="container">
-    <search></search>
-    <h1 class="row m-x-auto flex-items-xs-center" style="margin-top:30px;margin-bottom:30px;color:#286090;">
-      <span class="tag tag-success" style="margin-right:10px;">${id}</span>${data._source.name}
-    </h1>
+    <search
+      class="hidden-xs-down"
+    ></search>
+    <h2 style="margin-top:30px;margin-bottom:30px;color:#616161;display: flex;align-content: center;justify-content: center;">
+      <span class="badge badge-default" style="margin-right:10px;">${id}</span>
+      <span>${data._source.name}</span>
+    </h2>
     <div class="row">
       <div class="col-md-8 col-xs-12">
         <chart view-model.ref="chart" settings.bind="settings"></chart>
@@ -45,10 +48,6 @@
             <tr>
               <td>Max</td>
               <td class="text-center">${stats.max}</td>
-            </tr>
-            <tr>
-              <td>Average</td>
-              <td class="text-center">${stats.avg | floatFormat}</td>
             </tr>
           </table>
         </div>

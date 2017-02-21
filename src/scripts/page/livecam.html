@@ -1,7 +1,10 @@
 <template>
-  <div class="container-fluid livecams">
-    <div class="text-xs-center">
-      <img style="width:320px;height:240px;" src.bind="image.url" repeat.for="image of images" />
+  <div class="livecams container">
+    <div repeat.for="image of images">
+      <img
+        style="width:320px;height:240px;"
+        src.bind="image.url"
+      />
     </div>
   </div>
 </template>
