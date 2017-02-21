@@ -1,0 +1,29 @@
+{
+  "development": {
+    "endpoints": [
+      {
+        "name": "api",
+        "endpoint": "http://127.0.0.1:1337/",
+        "default": true
+      }
+    ]
+  },
+  "staging": {
+    "endpoints": [
+      {
+        "name": "api",
+        "endpoint": "http://api.stats-lyon.localhost:8020/",
+        "default": true
+      }
+    ]
+  },
+  "production": {
+    "endpoints": [
+      {
+        "name": "api",
+        "endpoint": "https://api.stats-lyon.fr/",
+        "default": true
+      }
+    ]
+  }
+}

@@ -4,6 +4,7 @@ import routes from "config/routes";
 import appConfig from "config/app";
 import Backend from "i18next-xhr-backend";
 import {Router} from "aurelia-router";
+import {AureliaConfiguration} from 'aurelia-configuration';
 import "bootstrap";
 import "font-awesome/css/font-awesome.min.css!text";
 
@@ -11,8 +12,19 @@ export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
 
+    .plugin('aurelia-configuration', config => {
+      config.setEnvironments({
+        staging    : ['stats-lyon.localhost'],
+        development: ['localhost'],
+        production : ['stats-lyon.fr', 'www.stats-lyon.fr']
+      });
+      config.setDirectory('/scripts');
+      config.setConfig('app.json');
+    })
+
     .plugin('aurelia-api', builder => {
-      appConfig.endpoints.forEach(endpoint => {
+      let endpoints = aurelia.container.get(AureliaConfiguration).get('endpoints');
+      endpoints.forEach(endpoint => {
         builder.registerEndpoint(endpoint.name, endpoint.endpoint, endpoint.config);
 
         if (endpoint.default) {
@@ -34,7 +46,6 @@ export function configure(aurelia) {
 
     .plugin('aurelia-i18n', instance => {
       instance.i18next.use(Backend);
-
       instance.setup({
         backend    : {
           loadPath: 'scripts/config/locale/{{lng}}/{{ns}}.json'

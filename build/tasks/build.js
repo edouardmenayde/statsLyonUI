@@ -11,7 +11,7 @@ const notify          = require('gulp-notify');
 const less            = require('gulp-less');
 const sass            = require('gulp-sass');
 
-var outputScripts, outputStyles;
+var outputScripts, outputStyles, outputFonts;
 
 // transpiles changed es6 files to SystemJS format
 // the plumber() call prevents 'pipe breaking' caused
@@ -42,6 +42,11 @@ gulp.task('build-sass', function () {
     .pipe(gulp.dest(outputStyles));
 });
 
+gulp.task('copy-fonts', function () {
+  return gulp.src(paths.font)
+    .pipe(gulp.dest(outputFonts));
+});
+
 // this task calls the clean task (located
 // in ./clean.js), then runs the build-system
 // and build-html tasks in parallel
@@ -49,11 +54,12 @@ gulp.task('build-sass', function () {
 gulp.task('build', function (callback) {
   outputScripts = paths.devRoot + paths.scripts;
   outputStyles  = paths.devRoot + paths.styles;
+  outputFonts   = paths.devRoot + paths.fonts;
 
   return runSequence(
     'clean-dev',
     'unbundle',
-    ['build-system', 'build-html', 'build-sass'],
+    ['build-system', 'build-html', 'build-sass', 'copy-fonts'],
     callback
   );
 });
@@ -61,10 +67,11 @@ gulp.task('build', function (callback) {
 gulp.task('build-dist', function (callback) {
   outputScripts = paths.tmpRoot + paths.scripts;
   outputStyles  = paths.tmpRoot + paths.styles;
+  outputFonts   = paths.tmpRoot + paths.fonts;
 
   return runSequence(
     ['clean-tmp', 'clean-dist'],
-    ['build-system', 'build-html', 'build-sass'],
+    ['build-system', 'build-html', 'build-sass', 'copy-fonts'],
     callback
   );
 });

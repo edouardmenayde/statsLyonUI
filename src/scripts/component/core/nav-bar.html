@@ -1,17 +1,15 @@
 <template bindable="router">
-  <nav class="navbar navbar-dark bg-inverse">
-    <div class="clearfix">
-      <button class="navbar-toggler pull-xs-right hidden-sm-up" type="button" data-toggle="collapse"
-              data-target="#collapsingNavbar" aria-controls="collapsingNavbar" aria-expanded="true"
-              aria-label="Toggle navigation">☰</button>
-      <a class="navbar-brand hidden-sm-up" href="/#/">StatsLyon</a>
-    </div>
-    <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
-      <ul class="nav navbar-nav">
-        <li repeat.for="row of router.navigation" class="nav-item ${row.isActive ? 'active' : ''}">
-          <a class="nav-link" href.bind="row.href"><span t="${row.title}"></span></a>
-        </li>
-      </ul>
-    </div>
+  <nav class="navbar navbar-toggleable-xl" style="flex-direction: column">
+    <ul class="navbar-nav justify-content-center align-items-center d-flex">
+      <li
+        repeat.for="row of router.navigation"
+        class="nav-item ${row.isActive ? 'active' : ''}"
+        style="margin-right: 1rem; margin-left: 1rem;"
+      >
+        <a class="nav-link" href.bind="row.href">
+          <span class="fa fa-2x fa-${row.config.icon}"></span>
+        </a>
+      </li>
+    </ul>
   </nav>
 </template>

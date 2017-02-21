@@ -4,21 +4,32 @@ export default [
     name    : 'index',
     moduleId: 'page/index',
     nav     : true,
-    title   : 'Home'
+    title   : 'Home',
+    icon    : 'home'
+  },
+  {
+    route   : '/stations',
+    name    : 'Stations',
+    moduleId: 'page/stations',
+    nav     : true,
+    title   : 'Stations',
+    icon    : 'bicycle'
   },
   {
     route   : '/map',
     name    : 'Map',
     moduleId: 'page/map',
     nav     : true,
-    title   : 'Map'
+    title   : 'Map',
+    icon    : 'map-o'
   },
   {
     route   : '/livecam',
     name    : 'Livecam',
     moduleId: 'page/livecam',
     nav     : true,
-    title   : 'Livecam'
+    title   : 'Livecam',
+    icon    : 'cctv-o'
   },
   {
     route   : '/station/:id',

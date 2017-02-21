@@ -42,6 +42,7 @@ module.exports = {
         "bootstrap",
         "remove-accents",
         "moment",
+        "moment-round",
         "d3",
         "c3",
         "homefront",
@@ -51,7 +52,8 @@ module.exports = {
         "fetch",
         "i18next-xhr-backend",
         "jquery",
-        "screenfull"
+        "screenfull",
+        "aurelia-configuration"
       ],
       "options" : {
         "inject"  : true,
