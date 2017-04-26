@@ -1,0 +1,9 @@
+<template>
+  <div style="padding-left:15px;" repeat.for="node of tree | keys">
+    <h6>${node}</h6>
+    <layer-selector-repeater
+      tree.bind="tree[node]"
+      if.bind="node"
+    ></layer-selector-repeater>
+  </div>
+</template>

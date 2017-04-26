@@ -2,38 +2,43 @@ import {inject, customElement, bindable, observable, BindingEngine} from "aureli
 import {DOM} from "aurelia-pal";
 import * as d3 from "d3";
 import screenfull from "screenfull";
+import {layer} from "../decorators/layer";
 import {PoliticalMapLayer} from "./political-map-layer";
 import {TrafficLayer} from "./traffic-layer";
 import moment from "moment";
 import "moment-round";
 
-@inject(BindingEngine, PoliticalMapLayer, TrafficLayer)
+/**
+ * Datamap
+ *
+ * @TODO : Rename it to datamap.
+ * @TODO: Move away layer selector
+ */
+@inject(BindingEngine)
+@layer(TrafficLayer)
+@layer(PoliticalMapLayer)
 export class Datamap2 {
 
   width  = null;
   height = null;
   map    = null;
 
-  fiveMinuteSequence = [];
-
-  selectedTime = 0;
-
-  layers = [];
-
   selectedIds = [];
+
+  layers;
 
   selectedIdsChanged() {
     this.displayOrHideLayers();
   }
 
-  constructor(bindingEngine, politicalMapLayer, trafficLayer) {
+  /**
+   * Setup bases for the map and initialize layers.
+   *
+   * @param {object} bindingEngine
+   */
+  constructor(bindingEngine) {
 
     this.bindingEngine = bindingEngine;
-
-    this.layers = [
-      politicalMapLayer,
-      trafficLayer
-    ];
 
     for (let i = 0; i < this.layers.length; i++) {
       this.selectedIds.push(i);
@@ -55,15 +60,22 @@ export class Datamap2 {
 
   }
 
+  /**
+   * Set the size of the datamap according to container size.
+   */
   setSize() {
     this.height = this.container.clientHeight;
     this.width  = this.container.clientWidth;
   }
 
+  /**
+   * Initialize or hide layers depending on their checkbox status.
+   * @TODO : init does not belong here it should only be display or hide.
+   */
   displayOrHideLayers() {
     for (let i = 0; i < this.layers.length; i++) {
 
-      var itemToBeShown = false;
+      let itemToBeShown = false;
 
       for (let j = 0; j < this.selectedIds.length; j++) {
         if (i === this.selectedIds[j]) {
@@ -80,15 +92,24 @@ export class Datamap2 {
     }
   }
 
+  /**
+   * Load the datamap.
+   */
   load() {
     this.setup();
     this.displayOrHideLayers();
   }
 
+  /**
+   * Reload the datamap using load method.
+   */
   reload() {
     this.load();
   }
 
+  /**
+   * Setup the datamap using d3.
+   */
   setup() {
     this.clear();
 
@@ -106,20 +127,32 @@ export class Datamap2 {
     d3.select(this.svg).call(this.zoomBehavior);
   }
 
+  /**
+   * Clear the datamap.
+   */
   clear() {
     d3.select(this.svg).selectAll('*').remove();
   }
 
+  /**
+   * Zoom on the datamap.
+   */
   zoom() {
     this.map.attr('transform', `translate(${d3.event.transform.x} ${d3.event.transform.y})scale(${d3.event.transform.k})`);
   }
 
+  /**
+   * Go fullscreen.
+   */
   fullscreen() {
     if (!screenfull.enabled) return;
     screenfull.toggle(this.parent);
     this.setSize();
   }
 
+  /**
+   * Set the size, load the datamap, subscribe to checkboxes change and resize events.
+   */
   attached() {
     this.setSize();
     this.load();
@@ -129,6 +162,9 @@ export class Datamap2 {
     window.addEventListener('resize', this.windowResizeEventHandler);
   }
 
+  /**
+   * Unsubscribe from checkboxes change and resize events.
+   */
   detached() {
     this.selectedIdsSubscription.dispose();
     window.removeEventListener('resize', this.windowResizeEventHandler);

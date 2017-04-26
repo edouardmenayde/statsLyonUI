@@ -9,19 +9,33 @@ export class StationsLayer extends Layer {
 
   stations = [];
 
+  fill = '#6B6B6B';
+
   constructor(endpoint) {
     super();
     this.endpoint = endpoint;
-    this.fetchStations();
   }
 
+  /**
+   * Initialize the layer.
+   * @param {object} parentLayer
+   */
   initialize(parentLayer) {
     this.parentLayer = parentLayer;
     this.mainLayer   = parentLayer.mainLayer;
     this.initializeOwnVectorLayer();
-    this.fetch();
+
+    if (this.stations.length == 0) {
+      this.fetch();
+    }
+    else {
+      this.load();
+    }
   }
 
+  /**
+   * Draw the stations points.
+   */
   draw() {
     const radius = d3.scaleLinear()
       .domain([0, 40])
@@ -45,7 +59,7 @@ export class StationsLayer extends Layer {
       .attr('r', station => {
         return radius(station._source.availableStands);
       })
-      .attr('fill', '#164F70')
+      .attr('fill', this.fill)
       .on('mouseover', (station) => {
         this.mainLayer.tooltip.setValue(`${station._source.name} : ${station._source.availableStands}`);
         this.mainLayer.tooltip.setPosition({
@@ -57,6 +71,10 @@ export class StationsLayer extends Layer {
       .on('mouseout', this.hideTooltip.bind(this));
   }
 
+  /**
+   * Fetch stations points.
+   * @return {Promise}
+   */
   fetchStations() {
     return this.endpoint
       .find(`status?from=${moment().subtract(5, 'hours').utc().format()}&to=${moment().utc().format()}`)
@@ -68,6 +86,9 @@ export class StationsLayer extends Layer {
       });
   }
 
+  /**
+   * Fetch every needed piece of data and loads afterwards.
+   */
   fetch() {
     Promise.all([
       this.fetchStations()
@@ -80,6 +101,10 @@ export class StationsLayer extends Layer {
       })
   }
 
+  /**
+   * Show a tooltip for each station point on the map.
+   * @param {Object} feature
+   */
   showTooltip(feature) {
     this.mainLayer.tooltip.setValue(feature.properties.prettyName);
     this.mainLayer.tooltip.setPosition({
@@ -89,6 +114,9 @@ export class StationsLayer extends Layer {
     this.mainLayer.tooltip.show();
   }
 
+  /**
+   * Hide the tooltip.
+   */
   hideTooltip() {
     this.mainLayer.tooltip.hide();
   }

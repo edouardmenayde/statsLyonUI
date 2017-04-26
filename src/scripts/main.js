@@ -69,11 +69,15 @@ export function configure(aurelia) {
     })
 
     .globalResources('component/search')
-    .globalResources('component/datamap')
     .globalResources('component/tooltip')
     .globalResources('component/results')
     .globalResources('component/datapie')
     .globalResources('component/chart')
+    .globalResources('component/datamap2')
+    .globalResources('component/datamap/datamap')
+    .globalResources('component/datamap/layer-canvas')
+    .globalResources('component/datamap/layer-selector')
+    .globalResources('component/datamap/layer-selector-repeater')
 
     .globalResources('tool/floatFormatValueConverter')
     .globalResources('tool/dateFormatValueConverter')

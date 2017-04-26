@@ -19,17 +19,34 @@ export class TrafficLayer extends Layer {
   green   = '#22ff22';
   grey    = '#dbdbdb';
 
+  strokeWidth = 1;
+
   constructor(endpoint) {
     super();
     this.endpoint = endpoint;
   }
 
+  /**
+   * Initialize own layer.
+   * @param mainLayer
+   */
   initialize(mainLayer) {
     this.mainLayer = mainLayer;
     this.initializeOwnVectorLayer();
-    this.fetch();
+
+    if (!this.traffic || !this.featureCollection) {
+      this.fetch();
+    }
+    else {
+      this.load();
+    }
   }
 
+  /**
+   * Select a color depending on the state.
+   * @param state
+   * @return {*}
+   */
   selectColor(state) {
     let color;
     switch (state) {
@@ -53,6 +70,9 @@ export class TrafficLayer extends Layer {
     return color;
   }
 
+  /**
+   * Draw traffic lines.
+   */
   draw() {
     this.ownVectorLayer
       .selectAll('path')
@@ -60,7 +80,7 @@ export class TrafficLayer extends Layer {
       .enter()
       .append('path')
       .attr('d', this.path)
-      .attr('stroke-width', 0.2)
+      .attr('stroke-width', this.strokeWidth)
       .style('stroke', (feature) => {
         const matchingFeature = this.traffic.values.find((trafficFeature) => {
           return trafficFeature.twgid == feature.properties.twgid;
@@ -73,6 +93,10 @@ export class TrafficLayer extends Layer {
       .attr('fill', 'transparent');
   }
 
+  /**
+   * Fetch traffic information.
+   * @return {Promise}
+   */
   fetchTraffic() {
     return this.endpoint
       .find(`traffic`)
@@ -84,6 +108,10 @@ export class TrafficLayer extends Layer {
       });
   }
 
+  /**
+   * Fetch traffic sections.
+   * @return {Promise}
+   */
   fetchFeatureCollection() {
     return new Promise((resolve, reject) => {
       d3.json(this.file, (error, response) => {
@@ -96,6 +124,9 @@ export class TrafficLayer extends Layer {
     });
   }
 
+  /**
+   * Fetch every needed piece of data and load afterwards.
+   */
   fetch() {
     Promise.all([
       this.fetchTraffic(),

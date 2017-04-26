@@ -3,8 +3,9 @@ import {inject} from "aurelia-framework";
 import {Endpoint} from "aurelia-api";
 import {Layer} from "./layer";
 import {StationsLayer} from "./stations-layer";
+import {layer} from "../decorators/layer";
 
-@inject(StationsLayer)
+@layer(StationsLayer)
 export class PoliticalMapLayer extends Layer {
 
   name              = 'Political Map';
@@ -13,32 +14,47 @@ export class PoliticalMapLayer extends Layer {
   svg               = null;
   map               = null;
 
-  constructor(stationsLayer) {
-    super();
-    this.stationsLayer = stationsLayer;
-  }
+  stroke = '#CAD2D3';
+  fill   = '#F6F6F4';
 
+  /**
+   * Initialize own layer and subsequent layer.
+   * @param {object} mainLayer
+   */
   initialize(mainLayer) {
     this.mainLayer = mainLayer;
     this.initializeOwnVectorLayer();
-    this.fetch();
-    this.stationsLayer.initialize(this);
+
+    if (!this.featureCollection) {
+      this.fetch();
+    }
+    else {
+      this.load();
+    }
+
+    this.layers.forEach(layer => {
+      layer.initialize(this);
+    });
   }
 
+  /**
+   * Draw own layer.
+   */
   draw() {
-    const stroke = '#303030';
-    const fill   = '#121212';
-
     this.ownVectorLayer
       .selectAll('path')
       .data(this.featureCollection.features)
       .enter()
       .append('path')
       .attr('d', this.path)
-      .style('stroke', stroke)
-      .attr('fill', fill)
+      .style('stroke', this.stroke)
+      .attr('fill', this.fill)
   }
 
+  /**
+   * Fetch the map.
+   * @return {Promise}
+   */
   fetchFeatureCollection() {
     return new Promise((resolve, reject) => {
       d3.json(this.file, (error, response) => {
@@ -51,6 +67,9 @@ export class PoliticalMapLayer extends Layer {
     });
   }
 
+  /**
+   * Fetch every needed piece of data and load afterwards.
+   */
   fetch() {
     Promise.all([
       this.fetchFeatureCollection()

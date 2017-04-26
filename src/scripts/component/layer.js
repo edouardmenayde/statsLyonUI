@@ -6,6 +6,9 @@ export class Layer {
   path       = null;
   mainLayer  = null;
 
+  /**
+   * Load the layer.
+   */
   load() {
     this.initializeProjection();
     this.initializePath();
@@ -14,15 +17,28 @@ export class Layer {
     this.draw();
   }
 
+  /**
+   * Clearing the vector layer using the name of the class (or inheriting class) if it exists.
+   */
   clear () {
-    // this.ownVectorLayer.select(`.${this.name}`).remove();
+    if (!this.ownVectorLayer) {
+      return;
+    }
+
+    this.mainLayer.map.select(`.${this.constructor.name}`).remove();
   }
 
+  /**
+   * Initialize a vector layer with using the name of the class (or inheriting class) as a class.
+   */
   initializeOwnVectorLayer() {
     this.clear();
-    this.ownVectorLayer = this.mainLayer.map.append('g').attr('class', `polygon ${this.name}`);
+    this.ownVectorLayer = this.mainLayer.map.append('g').attr('class', `polygon ${this.constructor.name}`);
   }
 
+  /**
+   * Initialize the projection.
+   */
   initializeProjection() {
     this.projection = d3.geoMercator();
     this.projection
@@ -31,14 +47,23 @@ export class Layer {
       .translate([this.mainLayer.width / 2, this.mainLayer.height / 2]);
   }
 
+  /**
+   * Initialize the path.
+   */
   initializePath() {
     this.path = d3.geoPath().projection(this.projection);
   }
 
+  /**
+   * Reset the projection.
+   */
   resetProjection() {
     this.projection.scale(1).translate([0, 0]);
   }
 
+  /**
+   * Set the projection.
+   */
   setProjection() {
     const [[left, top], [right, bottom]] = this.path.bounds(this.featureCollection);
 

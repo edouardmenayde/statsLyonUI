@@ -16,7 +16,7 @@
       <button class="minus button float-xs-right" type="submit" click.delegate="zoomIn()">
         <i class="fa fa-white fa-inverse fa-plus"></i>
       </button>
-      <div class="layer-selector float-xs-right" style="background-color: grey; padding:0.5rem">
+      <div class="layer-selector float-xs-right" style="background-color: grey; padding:0.5rem; width: 150px;">
         <div class="layer" repeat.for="layer of layers">
           <input id="layer-${$index}" model.bind="$index" checked.bind="selectedIds" type="checkbox" />
           <label class="layer-name" for="layer-${$index}">${layer.name}</label>
