@@ -1,19 +1,14 @@
 language: node_js
 
-env:
-  global:
-    - secure: "LZOHqBRAHtN5wBw8tsf3zHsc59nupbhFpLTSq8IzTuZchNIU77F2Sk7XfyWTXujCoSAwzPQWKcaxen76CKu/6FrVMyhTxxdevcxaBjIDMUyZ1PSf0KnO0XdJTinMFBUOuXkAKIwQ0FcYqV4sb8TUx3Bt4MbS3dDTYFvlMS+MAlF+7awVpmhVNPK01lWzxXt7B8692TL8cA83BZWIa6Y9csRWM/FXsWSjuuLzvpNRnhg/+K1DaS/ayKGihdSNQZheyu0POSrEIiTQgNQ3MSp+zdAQy7gYGG9sRi/agg7tYr/OV94aGnumOg+BPpE+NjR6pZBmKuHNTVmdAsWWUMswVLefExem93qo8bRhut1eiczdCrDN9m44/ofzUSSVZRJWeFFVnQjvVCbkJTU4CyMLzTHkfEN/GNJniIbNIMxF0o9LnMgDCWneYcUreVSUSh4yOLkBSQkr80399AnsBTkGWnAPgJGsxCV+CyflLOc4kgeXVIAXzFY5j5lpOa4bVMCape2YgmA6T1WewruJ2WaaC6l9NtrYfJ3i80YDCCmhZogZWMIIoegtqfMyip8wQrS2QPVcqyNgAFyWZNLsM27NqA5wN5C+XNddJXgDshHYJWyszxFUN0JndRagTjXZSzCyk/p0EntdZXWE+nvIles9n82lwnepJ/o/4fwZzpe/qos="
-
 node_js:
   - '6.9.5'
 
 before_install:
   - npm install -g jspm
-  - jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
 
 before_script:
   - jspm -v
-  - jspm i
+  - jspm i -y
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 
