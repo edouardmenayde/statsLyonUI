@@ -6,6 +6,7 @@
   "main": "dist/main.js",
   "scripts": {
     "test": "gulp test",
+    "lint": "gulp lint",
     "e2e": "gulp serve webdriver-standalone e2e"
   },
   "devDependencies": {
