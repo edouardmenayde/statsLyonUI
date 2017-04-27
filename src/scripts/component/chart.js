@@ -1,4 +1,4 @@
-import {inject, bindable, customElement, bindingMode} from 'aurelia-framework';
+import {bindable, customElement, bindingMode} from 'aurelia-framework';
 import c3 from 'c3';
 
 @customElement('chart')
@@ -32,7 +32,7 @@ export class Chart {
     });
   }
 
-  redraw () {
+  redraw() {
     this.instance.flush();
   }
 

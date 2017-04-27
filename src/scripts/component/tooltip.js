@@ -1,5 +1,4 @@
-import {inject, customElement, bindable, observable} from 'aurelia-framework';
-import {DOM} from 'aurelia-pal';
+import {customElement} from 'aurelia-framework';
 
 @customElement('tooltip')
 export class Tooltip {
@@ -19,6 +18,7 @@ export class Tooltip {
     if (coordinates.x < elementWidth / 2) {
       this.top  = coordinates.y + 15;
       this.left = coordinates.x + 15;
+
       return;
     }
 

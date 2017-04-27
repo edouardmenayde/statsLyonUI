@@ -2,6 +2,7 @@ import {inject, observable} from 'aurelia-framework';
 import {Endpoint} from 'aurelia-api';
 import moment from 'moment';
 import {Notification} from 'aurelia-notification';
+import {logger} from '../main';
 
 @inject(Endpoint.of('api'), Notification)
 export class Station {
@@ -26,6 +27,7 @@ export class Station {
 
   chart = null;
 
+  /* eslint-disable key-spacing, no-useless-computed-key */
   settings = {
     data    : {
       x      : 'date',
@@ -68,6 +70,7 @@ export class Station {
       }
     }
   };
+  /* eslint-enable key-spacing, no-useless-computed-key */
 
   firstLoad = true;
 
@@ -178,6 +181,7 @@ export class Station {
   setupExtent() {
     const base = moment().subtract(4, 'hours').toDate();
     const now  = moment().toDate();
+
     this.chart.setExtent([base, now]);
   }
 
@@ -196,7 +200,7 @@ export class Station {
         this.stats = response;
       })
       .catch(error => {
-        console.error(error);
+        logger.error(error);
       });
   }
 
@@ -214,7 +218,7 @@ export class Station {
         this.statusDataset = response;
       })
       .catch(error => {
-        console.error(error);
+        logger.error(error);
       });
   }
 
@@ -225,7 +229,7 @@ export class Station {
         this.data = response;
       })
       .catch(error => {
-        console.error(error);
+        logger.error(error);
       });
   }
 

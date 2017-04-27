@@ -1,7 +1,7 @@
-import {inject, customElement, bindable, observable} from 'aurelia-framework';
+import {inject} from 'aurelia-framework';
 import {Endpoint} from 'aurelia-api';
 import moment from 'moment';
-
+import {logger} from "../main";
 
 @inject(Endpoint.of('api'))
 export class Index {
@@ -20,10 +20,10 @@ export class Index {
 
   fetchMostUsedStations() {
     this.endpoint
-      .find('status/most-used-stations',{
+      .find('status/most-used-stations', {
         from: moment(this.from).utc().format(),
         to  : moment(this.to).utc().format(),
-        max: 6
+        max : 6
       })
       .then(response => {
         this.mostUsedStations = response;
@@ -35,10 +35,10 @@ export class Index {
       .find('status/availability')
       .then(response => {
         this.availability = response;
-        this.percent = (this.availability.value * 100).toFixed(2);
+        this.percent      = (this.availability.value * 100).toFixed(2);
       })
       .catch(error => {
-        console.error(error);
+        logger.error(error);
       })
   }
 

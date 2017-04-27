@@ -1,4 +1,4 @@
-import {inject, customElement, bindable} from 'aurelia-framework';
+import {customElement, bindable} from 'aurelia-framework';
 
 @customElement('results')
 export class Results {

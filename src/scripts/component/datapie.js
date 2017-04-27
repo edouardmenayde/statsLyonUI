@@ -1,8 +1,5 @@
-import {inject, customElement, bindable, observable} from 'aurelia-framework';
-import {Endpoint} from 'aurelia-api';
-import {DOM} from 'aurelia-pal';
+import {customElement, bindable, observable} from 'aurelia-framework';
 import * as d3 from 'd3';
-
 
 @customElement('datapie')
 export class Datapie {
@@ -67,7 +64,9 @@ export class Datapie {
 
   arcTween(initial) {
     const interpolate = d3.interpolate(this._current, initial);
+
     this._current     = interpolate(0);
+
     return (t) => {
       return this.arc(interpolate(t));
     }
@@ -164,7 +163,6 @@ export class Datapie {
       .text((d) => {
         return `${d.value} %`;
       });
-
 
     return this;
   }
