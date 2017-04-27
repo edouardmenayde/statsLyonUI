@@ -1,5 +1,7 @@
 <template>
-  <layer-selector-repeater
-    tree.bind="layerManager.tree"
-  ></layer-selector-repeater>
+  <div style="position: absolute;">
+    <layer-selector-repeater
+      tree.bind="layerManager.fetchTree()"
+    ></layer-selector-repeater>
+  </div>
 </template>

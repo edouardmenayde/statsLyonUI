@@ -1,5 +1,6 @@
 import {inject} from 'aurelia-framework';
 import {Endpoint} from 'aurelia-api';
+import {logger} from "../main";
 
 @inject(Endpoint.of('api'))
 export class Livecam {
@@ -25,13 +26,13 @@ export class Livecam {
         this.timestampImages();
       })
       .catch(error => {
-        console.error(error);
+        logger.error(error);
       });
   }
 
-  timestampImages () {
+  timestampImages() {
     this.images.forEach(image => {
-      image.url += `?${+ new Date()}`
+      image.url += `?${+new Date()}`
     });
   }
 

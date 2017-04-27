@@ -4,25 +4,33 @@ describe('LayerManager', () => {
   describe('.generateTree()', () => {
     it('Should generate a dependency tree', () => {
       const layers       = {
-        TestLayer  : ['PeopleLayer'],
-        PeopleLayer: [],
-        GoldLayer  : [],
-        GodLayer   : ['TestLayer']
+        TestLayer  : {
+          parent: 'GodLayer'
+        },
+        PeopleLayer: {
+          parent: 'TestLayer'
+        },
+        GodLayer   : {
+          parent: null
+        },
+        GoldLayer  : {
+          parent: null
+        }
       };
       const expectedTree = {
-        GoldLayer: {},
         GodLayer : {
           TestLayer: {
             PeopleLayer: {}
           }
-        }
+        },
+        GoldLayer: {}
       };
 
       const layerManager = new LayerManager();
 
       layerManager.generateTree(layers);
 
-      expect(layerManager.tree).toBe(expectedTree);
+      expect(layerManager.tree).toEqual(expectedTree);
     });
   });
 });

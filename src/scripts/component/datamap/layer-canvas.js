@@ -1,10 +1,10 @@
 import {inject, customElement} from "aurelia-framework";
 import {select} from "d3-selection";
-import {DOM} from 'aurelia-pal';
+import {PLATFORM} from 'aurelia-pal';
 import {EventAggregator} from 'aurelia-event-aggregator';
 
 @customElement('layer-canvas')
-@inject(DOM, EventAggregator)
+@inject(EventAggregator)
 export class LayerCanvas {
 
   svg;
@@ -17,8 +17,7 @@ export class LayerCanvas {
 
   container;
 
-  constructor(DOM, eventAggregator) {
-    this.DOM             = DOM;
+  constructor(eventAggregator) {
     this.eventAggregator = eventAggregator;
   }
 
@@ -64,24 +63,36 @@ export class LayerCanvas {
     this
       .clear()
       .setSize()
-      .setup();
+      .setup()
+      .emitResized();
   }
 
   watchResize() {
-    this.DOM.addEventListener('resize', () => this.resized);
+    PLATFORM.addEventListener('resize', () => this.res);
+
+    return this;
   }
 
   unwatchResize() {
-    this.DOM.removeEventListener('resize', () => this.resized);
+    PLATFORM.removeEventListener('resize', () => this.resized());
+  }
+
+  emitResized() {
+    this.eventAggregator.publish('canvas-resized');
+  }
+
+  emitReady() {
+    this.eventAggregator.publish('canvas-ready');
   }
 
   attached() {
     this.setSize()
       .setup()
-      .watchResize();
+      .watchResize()
+      .emitReady();
   }
 
-  emitReady() {
-    this.eventAggregator.emit('canvas-ready');
+  detached() {
+    this.unwatchResize();
   }
 }

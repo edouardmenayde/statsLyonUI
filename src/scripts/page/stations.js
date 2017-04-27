@@ -1,6 +1,7 @@
 import {inject} from 'aurelia-framework';
 import {Endpoint} from 'aurelia-api';
 import moment from 'moment';
+import {logger} from "../main";
 
 @inject(Endpoint.of('api'))
 export class Stations {
@@ -19,11 +20,10 @@ export class Stations {
     this.endpoint
       .find('station')
       .then(response => {
-        console.log(response)
         this.stations = response;
       })
       .catch(error => {
-        console.error(error);
+        logger.error(error);
       });
   }
 

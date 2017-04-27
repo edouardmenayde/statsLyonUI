@@ -7,6 +7,13 @@ import {Router} from "aurelia-router";
 import {AureliaConfiguration} from 'aurelia-configuration';
 import "bootstrap";
 import "font-awesome/css/font-awesome.min.css!text";
+import {LogManager} from 'aurelia-framework';
+import {getLogger} from 'aurelia-logging';
+import {ConsoleAppender} from 'aurelia-logging-console';
+
+export const logger = getLogger('stats-lyon-ui');
+
+LogManager.addAppender(new ConsoleAppender());
 
 export function configure(aurelia) {
   aurelia.use
@@ -24,6 +31,7 @@ export function configure(aurelia) {
 
     .plugin('aurelia-api', builder => {
       let endpoints = aurelia.container.get(AureliaConfiguration).get('endpoints');
+
       endpoints.forEach(endpoint => {
         builder.registerEndpoint(endpoint.name, endpoint.endpoint, endpoint.config);
 
@@ -47,9 +55,11 @@ export function configure(aurelia) {
     .plugin('aurelia-i18n', instance => {
       instance.i18next.use(Backend);
       instance.setup({
+        /*eslint-disable*/
         backend    : {
           loadPath: 'scripts/config/locale/{{lng}}/{{ns}}.json'
         },
+        /*eslint-disable*/
         lng        : appConfig.defaultLocale.language,
         attributes : ['t'],
         fallbackLng: appConfig.defaultLocale.language,
@@ -73,7 +83,6 @@ export function configure(aurelia) {
     .globalResources('component/results')
     .globalResources('component/datapie')
     .globalResources('component/chart')
-    .globalResources('component/datamap2')
     .globalResources('component/datamap/datamap')
     .globalResources('component/datamap/layer-canvas')
     .globalResources('component/datamap/layer-selector')
@@ -84,8 +93,6 @@ export function configure(aurelia) {
     .globalResources('tool/hourFormatValueConverter')
     .globalResources('tool/titleFormatValueConverter')
   ;
-
-  aurelia.use.developmentLogging();
 
   aurelia.start().then(a => {
     a.container.get(Router).configure(configureRouter);

@@ -1,28 +1,95 @@
-import {DataMapMetadata} from './datamap-metadata';
+import {inject} from 'aurelia-framework';
+import {DataMapMetadata} from "./datamap-metadata";
+import {Endpoint} from "aurelia-api";
 
+@inject(Endpoint.of('api'))
 export class LayerManager {
 
-  tree         = {};
-  layerClasses = [];
-  layers       = new Map();
+  tree = {};
+
+  Layers = [];
+
+  layers = new Map();
+
+  constructor(endpoint) {
+    this.endpoint = endpoint;
+  }
 
   populateLayers(canvas) {
-    this.layerClasses.forEach(LayerClass => {
-      this.layers.set(LayerClass.name, new LayerClass(this, canvas));
+    this.Layers.forEach(Layer => {
+      let layer = new Layer(this, canvas, this.endpoint);
+
+      this.layers.set(Layer.name, {
+        instance : layer,
+        parent   : getParent(Layer),
+        displayed: true
+      });
+    });
+
+    this.initializeLayers();
+  }
+
+  initializeLayersInOrder(tree) {
+    Reflect.ownKeys(tree).forEach(layerName => {
+      let layer = this.layers.get(layerName);
+
+      if (layer && layer.displayed) {
+        layer.instance.doInitialize();
+        this.initializeLayersInOrder(tree[layerName]);
+      }
     });
   }
 
-  /**
-   * Register layers.
-   * @param {array} LayersClasses
-   */
-  registerLayers(LayersClasses) {
-    this.layerClasses = LayersClasses;
+  initializeLayers() {
+    this.initializeLayersInOrder(this.tree);
+  }
+
+  reloadAllLayersInOrder(tree) {
+    Reflect.ownKeys(tree).forEach(layerName => {
+      let layer = this.layers.get(layerName);
+
+      if (layer) {
+        if (layer.displayed) {
+          layer.instance.clear();
+          layer.instance.reload();
+        }
+        else {
+          layer.instance.clear();
+        }
+        this.reloadAllLayersInOrder(tree[layerName]);
+      }
+    });
+  }
+
+  reloadAllLayers() {
+    this.reloadAllLayersInOrder(this.tree);
+  }
+
+  getParent(layer) {
+    const parent = this.layers.get(layer.constructor.name).parent;
+
+    return this.layers.get(parent).instance;
+  }
+
+  toggleLayer(layerName) {
+    let layer = this.layers.get(layerName);
+
+    if (layer) {
+      layer.displayed = !layer.displayed;
+
+      this.reloadAllLayers();
+    }
+  }
+
+  registerLayers(Layers) {
+    this.Layers = Layers;
 
     let layers = {};
 
-    LayersClasses.forEach(LayerClass => {
-      layers[LayerClass.name] = DataMapMetadata.forTarget(LayerClass).fetch('sublayers');
+    Layers.forEach(Layer => {
+      layers[Layer.name] = {
+        parent: getParent(Layer)
+      }
     });
 
     this.generateTree(layers);
@@ -33,80 +100,30 @@ export class LayerManager {
   }
 
   generateTree(layers) {
-    let tree = {};
+    let layerKeys = Reflect.ownKeys(layers);
 
-    for (let layer in layers) {
-      if (layers.hasOwnProperty(layer)) {
-        tree[layer] = this.resolveDependencies(layers[layer], layers);
-      }
-    }
-
-    // console.log(tree)
-    //
-    // this.removeDuplicates(tree);
-
-    this.tree = tree;
-  }
-
-  existInLayer(needle, layers) {
-    let exists = false;
-
-    for (let layer in layers) {
-      if (layers.hasOwnProperty(layer)) {
-        if (layer === needle) {
-          exists = true;
-        }
-      }
-    }
-
-    return exists;
-  }
-
-  findInLayer(needle, layers) {
-    let searchedLayer = null;
-
-    for (let layer in layers) {
-      if (layers.hasOwnProperty(layer)) {
-        if (layer === needle) {
-          searchedLayer = layers[layer];
-        }
-      }
-    }
-
-    return searchedLayer;
-  }
-
-  resolveDependencies(layer, layers) {
-    let resolvedLayer = {};
-
-    layer.forEach(sublayerName => {
-      let sublayer = this.findInLayer(sublayerName, layers);
-      if (sublayer.length) {
-        if (!Array.isArray(sublayer)) {
-          resolvedLayer[sublayerName] = sublayer;
-        }
-        if (sublayer.length > 0) {
-          resolvedLayer[sublayerName] = this.resolveDependencies(resolvedLayer[sublayerName], layers);
-        }
+    layerKeys.forEach(layerName => {
+      if (layers[layerName].parent) {
+        layerKeys.forEach(l => {
+          if (l === layers[layerName].parent) {
+            layers[l][layerName] = layers[layerName];
+          }
+        });
       }
     });
 
-    return resolvedLayer;
-  }
+    layerKeys.forEach(layerName => {
+      let layer = layers[layerName];
 
-  removeDuplicates(tree) {
-    for (let layer in tree) {
-      if (tree.hasOwnProperty(layer)) {
-        for (let sublayer in tree[layer]) {
-          if (tree[layer].hasOwnProperty(sublayer)) {
-            if (this.existInLayer(sublayer, tree)) {
-              delete tree[sublayer];
-            }
-
-            this.removeDuplicates(tree[layer]);
-          }
-        }
+      if (typeof layer.parent === 'object') {
+        this.tree[layerName] = layer;
       }
-    }
+
+      delete layer.parent;
+    });
   }
+}
+
+function getParent(Layer) {
+  return DataMapMetadata.forTarget(Layer).fetch('parent-layer')
 }

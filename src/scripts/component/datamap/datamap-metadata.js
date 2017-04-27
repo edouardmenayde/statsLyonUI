@@ -15,15 +15,8 @@ export class Metadata {
     }
   }
 
-  addTo(key, value) {
-    if (typeof this.metadata[key] === 'undefined') {
-      this.metadata[key] = [];
-    }
-    else if (!Array.isArray(this.metadata[key])) {
-      this.metadata[key] = [this.metadata[key]];
-    }
-
-    this.metadata[key].push(value);
+  set(key, value) {
+    this.metadata[key] = value;
 
     return this;
   }

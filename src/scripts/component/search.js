@@ -1,7 +1,8 @@
-import {inject, customElement, bindable, observable, bindingMode} from 'aurelia-framework';
-import {Endpoint} from 'aurelia-api';
-import {Router} from 'aurelia-router';
-import {DOM} from 'aurelia-pal';
+import {inject, customElement, bindable, observable, bindingMode} from "aurelia-framework";
+import {Endpoint} from "aurelia-api";
+import {Router} from "aurelia-router";
+import {DOM} from "aurelia-pal";
+import {logger} from "../main";
 
 @customElement('search')
 @inject(Endpoint.of('api'), Router)
@@ -29,6 +30,7 @@ export class Search {
   inputChanged() {
     if (!this.input) {
       this.resetResults();
+
       return;
     }
     this.doSearch();
@@ -58,7 +60,7 @@ export class Search {
         this.results = response;
       })
       .catch(error => {
-        console.error(error);
+        logger.error(error);
       });
   }
 
@@ -95,6 +97,7 @@ export class Search {
 
   getLinkForSelectedItem() {
     const index = this.resultsElement.getSelectedItemIndex() >= 0 ? this.resultsElement.getSelectedItemIndex() : 0;
+
     return `station/${this.results[index]._source.stationID}`;
   }
 
@@ -106,6 +109,7 @@ export class Search {
 
     if (!this.results.length) {
       this.resultsElement.resetSelection();
+
       return false;
     }
 
@@ -124,12 +128,14 @@ export class Search {
 
     if (!this.results.length) {
       this.resultsElement.resetSelection();
+
       return false;
     }
 
     if (this.resultsElement.getSelectedItemIndex() - 1 < 0) {
       this.focus();
       this.resultsElement.resetSelection();
+
       return false;
     }
 
@@ -161,16 +167,19 @@ export class Search {
     this.resultsElement.resetSelection();
     this.unfocus();
     this.resultsElement.hide();
+
     return false;
   }
 
   handleDefault() {
     this.resultsElement.show();
+
     return true;
   }
 
   handlePageClickEvent() {
     this.resultsElement.hide();
+
     return true;
   }
 
@@ -178,6 +187,7 @@ export class Search {
     this.resultsElement.resetSelection();
     this.focus();
     this.resultsElement.show();
+
     return false;
   }
 

@@ -1,3 +1,11 @@
 {
-  "extends": "./node_modules/aurelia-tools/.eslintrc"
+  "extends": "../node_modules/spoonx-tools/.eslintrc.json",
+  "rules": {
+    "newline-per-chained-call": [
+      "error",
+      {
+        "ignoreChainWithDepth": 3
+      }
+    ]
+  }
 }

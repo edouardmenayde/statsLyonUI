@@ -7,7 +7,6 @@ export class LayerSelector {
 
   constructor(layerManager) {
     this.layerManager = layerManager;
-    console.log(this.layerManager.fetchTree())
   }
 
 }

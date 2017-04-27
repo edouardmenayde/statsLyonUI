@@ -4,9 +4,10 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 
 import {PoliticalMapLayer} from './layer/political-map-layer';
 import {StationsLayer} from './layer/stations-layer';
+import {TrafficLayer} from './layer/traffic-layer';
 
-@inject(LayerManager, EventAggregator)
 @customElement('datamap')
+@inject(LayerManager, EventAggregator)
 export class Datamap {
 
   canvas;
@@ -14,12 +15,15 @@ export class Datamap {
   constructor(layerManager, eventAggregator) {
     this.eventAggregator = eventAggregator;
     this.layerManager    = layerManager;
-    this.layerManager.registerLayers([StationsLayer, PoliticalMapLayer]);
+    this.layerManager.registerLayers([StationsLayer, PoliticalMapLayer, TrafficLayer]);
   }
 
   watchCanvas() {
     this.eventAggregator.subscribe('canvas-ready', () => {
       this.layerManager.populateLayers(this.canvas);
+    });
+    this.eventAggregator.subscribe('canvas-resized', () => {
+      this.layerManager.reloadAllLayers();
     });
   }
 
