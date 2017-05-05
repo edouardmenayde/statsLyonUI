@@ -1,27 +1,20 @@
 language: node_js
-
-env:
-  global:
-    - secure: "LZOHqBRAHtN5wBw8tsf3zHsc59nupbhFpLTSq8IzTuZchNIU77F2Sk7XfyWTXujCoSAwzPQWKcaxen76CKu/6FrVMyhTxxdevcxaBjIDMUyZ1PSf0KnO0XdJTinMFBUOuXkAKIwQ0FcYqV4sb8TUx3Bt4MbS3dDTYFvlMS+MAlF+7awVpmhVNPK01lWzxXt7B8692TL8cA83BZWIa6Y9csRWM/FXsWSjuuLzvpNRnhg/+K1DaS/ayKGihdSNQZheyu0POSrEIiTQgNQ3MSp+zdAQy7gYGG9sRi/agg7tYr/OV94aGnumOg+BPpE+NjR6pZBmKuHNTVmdAsWWUMswVLefExem93qo8bRhut1eiczdCrDN9m44/ofzUSSVZRJWeFFVnQjvVCbkJTU4CyMLzTHkfEN/GNJniIbNIMxF0o9LnMgDCWneYcUreVSUSh4yOLkBSQkr80399AnsBTkGWnAPgJGsxCV+CyflLOc4kgeXVIAXzFY5j5lpOa4bVMCape2YgmA6T1WewruJ2WaaC6l9NtrYfJ3i80YDCCmhZogZWMIIoegtqfMyip8wQrS2QPVcqyNgAFyWZNLsM27NqA5wN5C+XNddJXgDshHYJWyszxFUN0JndRagTjXZSzCyk/p0EntdZXWE+nvIles9n82lwnepJ/o/4fwZzpe/qos="
-
 node_js:
-  - '6.9.5'
-
+- 6.9.5
 before_install:
-  - npm install -g jspm
-  - jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
-
+- npm install -g jspm
+- jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
 before_script:
-  - jspm -v
-  - jspm i
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
+- jspm -v
+- jspm i
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 notifications:
   email:
     on_success: change
     on_failure: change
-
 script:
-  - npm test
-  - npm run lint
+- npm test
+- npm run lint
+JSPM_GITHUB_AUTH_TOKEN=c2NydW5zaGVzOjkyNzBlOTNiODA3NTA3NDllMTZiN2RkODA4MGVmMTFlMjM4OTFmOWI=:
+  secure: l57iaTOMPo1LnZkrqPvg5/gXXlS9gTplvZGlwu+buW8ZXbW4mt5NvJOmeUsBHazbxgAcdeyqX7h2PTTA1+VKI2O71S8yStTkDGejceMI6HrO2ayMf4JbgLBOPlOarUMTQoLr+QNHydgDp/DH4wKgoXudSF7MJSu8EIBGlINnDMs+VF3bDwaUcWy1ZVnnPrWG+ad3hcMSPpF5v+9BoF69WnXfczbJYxLobUvtBsAfmOVpzEQQE6zfigtwm9LkRl29xIIhRpIj1cUZr+cMh0gcnskTVyRmWwAmIXzzR/VTmCDiblmYlUn0KuOrLyn5fD4AUu2nzzHIxciLaajOYwFUU2yhRjCtZlp5tOBlQBIBQedG1cZdAybCJHrVAI/4TEku1fV6J8S7C/7Jy3KomGmZp32HoOYSXJ66VyV4jr1CXOfAHagZ3SK5yJKWetjAZ7iRHV4ZSRHv1CKF0ENOmgzWQycGLus0SwI57v37cTsxf7ahhYMpBPfVh/IAfjLgqTQr3uiQ3+it4hmKHFohrXi15KELTooAVv3mwMlWL8ZiDgDd+T1yf4TB/FCAPknFbYnGdPRY9rbFrTb7mlWKf2yf1mDF6BUG+M2nMLYlXz9hoSoI4NyE8193xnZRFqtM21di3ccNT7Eam28tnnxx5jNxGy3sFdiDjTtU8Ir2T7B5owQ=

@@ -72,7 +72,7 @@ export class StationsLayer extends Layer {
         this.stations = response;
       })
       .catch(error => {
-        logger.error.error(error);
+        logger.error(error);
       });
   }
 
@@ -87,7 +87,7 @@ export class StationsLayer extends Layer {
         this.load();
       })
       .catch(error => {
-        logger.error.error(error);
+        logger.error(error);
       })
   }
 
